@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "nordassist-website",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", ".", "-p", "4000", "--cors", "-c-1"],
+      "port": 4000
+    }
+  ]
+}
