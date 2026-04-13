@@ -142,7 +142,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 ───────────────────────────────────────── */
 #nav{
   position:fixed;top:0;left:0;right:0;z-index:999;
-  padding:12px 0;
+  padding:14px 0;
   transition:background .35s,border-color .35s,padding .35s;
   border-bottom:1px solid transparent;
 }
@@ -150,11 +150,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   background:rgba(7,8,12,.82);
   backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   border-bottom-color:var(--border);
-  padding:8px 0;
+  padding:10px 0;
 }
 .nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.nav-logo img{height:32px;width:auto;display:block;transition:opacity .2s}
-.nav-logo:hover img{opacity:.8}
+.nav-logo img{
+  height:60px;width:auto;display:block;
+  object-fit:contain;object-position:left center;
+  image-rendering:-webkit-optimize-contrast;
+  filter:drop-shadow(0 0 12px rgba(255,255,255,.10)) drop-shadow(0 0 4px rgba(10,132,255,.12));
+  transition:opacity .2s, filter .2s;
+}
+.nav-logo:hover img{
+  opacity:.9;
+  filter:drop-shadow(0 0 16px rgba(255,255,255,.16)) drop-shadow(0 0 6px rgba(10,132,255,.18));
+}
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{font-size:13.5px;font-weight:500;color:var(--text-2);transition:color .18s}
 .nav-links a:hover{color:var(--text)}
@@ -624,10 +633,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .pricing-card--featured{
   border:1.5px solid rgba(48,209,88,.45);
   box-shadow:0 0 0 1px rgba(48,209,88,.12),0 16px 56px rgba(48,209,88,.2),0 8px 40px rgba(0,0,0,.4);
-  transform:translateY(-8px);
+  margin-top:-8px;
+  margin-bottom:-8px;
 }
 .pricing-card--featured:hover{
-  transform:translateY(-12px);
+  transform:translateY(-4px);
   box-shadow:0 0 0 1px rgba(48,209,88,.3),0 20px 64px rgba(48,209,88,.3),0 8px 40px rgba(0,0,0,.5);
 }
 
@@ -933,9 +943,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* ─────────────────────────────────────────
    FOOTER LOGO
 ───────────────────────────────────────── */
-.footer-logo{display:inline-block;margin-bottom:16px}
-.footer-logo-img{height:38px;width:auto;opacity:.88;transition:opacity .25s;image-rendering:-webkit-optimize-contrast}
-.footer-logo:hover .footer-logo-img{opacity:1}
+.footer-logo{display:inline-block;margin-bottom:20px}
+.footer-logo-img{
+  height:52px;width:auto;
+  object-fit:contain;
+  opacity:.92;
+  filter:drop-shadow(0 0 10px rgba(255,255,255,.08));
+  transition:opacity .25s, filter .25s;
+  image-rendering:-webkit-optimize-contrast;
+}
+.footer-logo:hover .footer-logo-img{
+  opacity:1;
+  filter:drop-shadow(0 0 14px rgba(255,255,255,.14));
+}
 
 /* ═══════════════════════════════════════════════════
    FINAL POLISH — Unified system, hero-quality throughout
@@ -1304,12 +1324,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   /* ────────────────
      NAV / HEADER
   ──────────────── */
-  #nav         { padding:8px 0 }
-  #nav.scrolled{ padding:7px 0; background:rgba(7,8,12,.92) }
-  .nav-logo img{ height:28px }
+  #nav         { padding:10px 0 }
+  #nav.scrolled{ padding:8px 0; background:rgba(7,8,12,.92) }
+  .nav-logo img{ height:48px }
   .nav-wrap    { gap:8px }
   .nav-cta     { padding:7px 13px; font-size:12px; gap:4px; letter-spacing:.01em }
   .hamburger   { padding:2px 4px }
+  .footer-logo-img{ height:42px }
 
   /* ────────────────
      HERO
@@ -1548,7 +1569,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .pricing-header { margin-bottom:44px }
   .pricing-subtext { font-size:15px }
   .pricing-grid { grid-template-columns:1fr; gap:20px }
-  .pricing-card--featured { transform:none }
+  .pricing-card--featured { margin-top:0; margin-bottom:0 }
   .pricing-card--featured:hover { transform:translateY(-4px) }
   .pricing-card-inner { padding:32px 24px 28px }
   .pricing-amount { font-size:clamp(34px,9vw,44px) }
