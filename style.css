@@ -169,7 +169,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   font-size:13.5px;font-weight:600;color:#fff;
   background:var(--blue);transition:all .2s;
 }
-.nav-cta:hover{background:var(--blue-2);box-shadow:0 4px 20px rgba(10,132,255,.35)}
+.nav-cta:hover{background:var(--blue-2);box-shadow:0 4px 22px rgba(10,132,255,.55);transform:translateY(-1px)}
 .hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
 .hamburger span{display:block;width:22px;height:1.5px;background:var(--text-2);border-radius:2px;transition:all .25s}
 
@@ -595,35 +595,125 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   background:var(--bg-raise);
 }
 
-/* Single-plan pricing card */
-.pricing-solo-card{
-  background:var(--bg-float);
+/* ── Pricing grid ── */
+.pricing-header{text-align:center;margin-bottom:64px}
+.pricing-subtext{
+  margin-top:18px;font-size:17px;color:var(--text-2);
+  max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;
+}
+.pricing-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:24px;align-items:center;
+}
+
+/* Base card — white on dark */
+.pricing-card{
+  position:relative;border-radius:24px;
+  background:#ffffff;
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow:0 8px 40px rgba(0,0,0,.4);
+  transition:transform .22s var(--ease-out),box-shadow .22s var(--ease-out);
+}
+.pricing-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 48px rgba(48,209,88,.14),0 8px 40px rgba(0,0,0,.45);
+}
+.pricing-card-inner{padding:40px 36px 36px}
+
+/* Featured card (Growth) */
+.pricing-card--featured{
+  border:1.5px solid rgba(48,209,88,.45);
+  box-shadow:0 0 0 1px rgba(48,209,88,.12),0 16px 56px rgba(48,209,88,.2),0 8px 40px rgba(0,0,0,.4);
+  transform:translateY(-8px);
+}
+.pricing-card--featured:hover{
+  transform:translateY(-12px);
+  box-shadow:0 0 0 1px rgba(48,209,88,.3),0 20px 64px rgba(48,209,88,.3),0 8px 40px rgba(0,0,0,.5);
+}
+
+/* Badge */
+.pricing-badge{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--green);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  padding:5px 16px;border-radius:980px;white-space:nowrap;
+  box-shadow:0 2px 12px rgba(48,209,88,.45);
+}
+
+/* Plan name */
+.pricing-plan-name{
+  font-size:12.5px;font-weight:700;letter-spacing:.07em;
+  text-transform:uppercase;color:#86868b;margin-bottom:18px;
+}
+.pricing-card--featured .pricing-plan-name{color:var(--green)}
+
+/* Price */
+.pricing-price{display:flex;align-items:baseline;gap:6px;margin-bottom:12px}
+.pricing-amount{
+  font-size:clamp(38px,4.5vw,50px);font-weight:800;
+  letter-spacing:-.04em;color:#1d1d1f;line-height:1;
+}
+.pricing-amount--sm{font-size:clamp(26px,3vw,34px)}
+.pricing-period{font-size:13.5px;font-weight:500;color:#86868b}
+
+/* Description */
+.pricing-desc{font-size:14px;color:#6e6e73;line-height:1.55;margin-bottom:26px}
+
+/* Divider */
+.pricing-divider{height:1px;background:rgba(0,0,0,.07);margin-bottom:22px}
+
+/* Feature list */
+.pricing-features{
+  list-style:none;padding:0;margin:0 0 30px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.pricing-features li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13.5px;color:#3a3a3c;line-height:1.45;
+}
+.pricing-features li svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;color:var(--blue)}
+.pricing-features--green li svg{color:var(--green)}
+
+/* CTA buttons */
+.pricing-cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:13px 20px;border-radius:12px;
+  font-size:14px;font-weight:600;
+  transition:all .2s var(--ease);
+}
+.pricing-cta--outline{
+  border:1.5px solid rgba(0,0,0,.12);
+  color:#1d1d1f;background:transparent;
+}
+.pricing-cta--outline:hover{
+  background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.2);
+  transform:translateY(-1px);
+}
+.pricing-cta--green{
+  background:var(--green);color:#fff;
+  border:1.5px solid transparent;
+  box-shadow:0 4px 16px rgba(48,209,88,.35);
+}
+.pricing-cta--green:hover{
+  background:#28c249;
+  box-shadow:0 6px 22px rgba(48,209,88,.52);
+  transform:translateY(-1px);
+}
+
+/* Tagline strip */
+.pricing-tagline{
+  text-align:center;margin-top:72px;
+  padding:38px 48px;
+  background:rgba(255,255,255,.03);
   border:1px solid var(--border-hi);
-  border-radius:28px;padding:52px 48px;
-  max-width:480px;width:100%;text-align:center;
-  box-shadow:0 0 100px rgba(10,132,255,.12),0 40px 80px rgba(0,0,0,.5);
-  position:relative;overflow:hidden;
+  border-radius:20px;
+  max-width:720px;margin-left:auto;margin-right:auto;
 }
-.pricing-solo-card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 0%,rgba(10,132,255,.12) 0%,transparent 65%);
-  pointer-events:none;
+.pricing-tagline-title{
+  font-size:19px;font-weight:700;color:var(--text);
+  margin-bottom:10px;letter-spacing:-.02em;
 }
-.pricing-solo-price{display:flex;align-items:baseline;justify-content:center;gap:6px;margin-bottom:10px}
-.pricing-solo-amount{font-size:clamp(52px,8vw,72px);font-weight:800;letter-spacing:-.04em;color:var(--text);line-height:1}
-.pricing-solo-unit{font-size:20px;font-weight:600;color:var(--text-2)}
-.pricing-solo-trial{font-size:14px;color:var(--text-3);margin-bottom:36px}
-.pricing-solo-div{height:1px;background:var(--border);margin-bottom:32px}
-.pricing-solo-features{
-  list-style:none;padding:0;margin:0 0 40px;
-  text-align:left;display:flex;flex-direction:column;gap:16px;
-}
-.pricing-solo-features li{
-  display:flex;align-items:center;gap:12px;
-  font-size:15px;color:var(--text-2);line-height:1.45;
-}
-.pricing-solo-features li svg{width:18px;height:18px;flex-shrink:0;color:var(--blue)}
-.pricing-solo-note{margin-top:18px;font-size:12.5px;color:var(--text-3)}
+.pricing-tagline-text{font-size:15px;color:var(--text-2);line-height:1.65}
 
 /* ─────────────────────────────────────────
    ⑪ FAQ
@@ -906,7 +996,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .nav-cta{background:linear-gradient(160deg,var(--blue) 0%,#1d96ff 100%)}
 .nav-cta:hover{
   background:linear-gradient(160deg,#1d96ff 0%,var(--blue-2) 100%);
-  box-shadow:0 4px 20px rgba(10,132,255,.38);
+  box-shadow:0 4px 22px rgba(10,132,255,.55);
   transform:translateY(-1px);
 }
 
@@ -1455,18 +1545,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
      PRICING
   ──────────────── */
   #pricing { padding:var(--sec-m) 0 }
-  .pricing-solo-card {
-    padding:28px 22px;
-    border-radius:18px;
-  }
-  .pricing-solo-amount { font-size:clamp(44px,11.5vw,56px) }
-  .pricing-solo-unit   { font-size:17px }
-  .pricing-solo-trial  { font-size:12.5px; margin-bottom:22px }
-  .pricing-solo-div    { margin-bottom:18px }
-  .pricing-solo-features { gap:10px; margin-bottom:24px }
-  .pricing-solo-features li { font-size:13.5px; gap:9px }
-  .pricing-solo-features li svg { width:15px; height:15px }
-  .pricing-solo-note { font-size:11.5px; margin-top:12px }
+  .pricing-header { margin-bottom:44px }
+  .pricing-subtext { font-size:15px }
+  .pricing-grid { grid-template-columns:1fr; gap:20px }
+  .pricing-card--featured { transform:none }
+  .pricing-card--featured:hover { transform:translateY(-4px) }
+  .pricing-card-inner { padding:32px 24px 28px }
+  .pricing-amount { font-size:clamp(34px,9vw,44px) }
+  .pricing-amount--sm { font-size:clamp(24px,7vw,30px) }
+  .pricing-tagline { padding:28px 22px; margin-top:44px }
+  .pricing-tagline-title { font-size:16px }
+  .pricing-tagline-text { font-size:13.5px }
 
   /* ────────────────
      FAQ
