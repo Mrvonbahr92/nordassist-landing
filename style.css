@@ -153,16 +153,21 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   padding:10px 0;
 }
 .nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo{
+  display:flex;align-items:center;
+  background:none;padding:0;border-radius:0;
+  border:none;box-shadow:none;outline:none;
+}
 .nav-logo img{
   height:60px;width:auto;display:block;
   object-fit:contain;object-position:left center;
   image-rendering:-webkit-optimize-contrast;
-  filter:drop-shadow(0 0 12px rgba(255,255,255,.10)) drop-shadow(0 0 4px rgba(10,132,255,.12));
+  filter:drop-shadow(0 0 8px rgba(255,255,255,.08)) drop-shadow(0 0 3px rgba(10,132,255,.10));
   transition:opacity .2s, filter .2s;
 }
 .nav-logo:hover img{
   opacity:.9;
-  filter:drop-shadow(0 0 16px rgba(255,255,255,.16)) drop-shadow(0 0 6px rgba(10,132,255,.18));
+  filter:drop-shadow(0 0 10px rgba(255,255,255,.12)) drop-shadow(0 0 4px rgba(10,132,255,.14));
 }
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{font-size:13.5px;font-weight:500;color:var(--text-2);transition:color .18s}
@@ -325,12 +330,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 .dash-frame{
   position:relative;max-width:1180px;margin:0 auto;padding:0 24px;
+  overflow:hidden;
 }
 .dash-frame::before{
   content:'';position:absolute;
-  inset:80px 60px -60px;
+  inset:80px 60px 0;
   background:radial-gradient(ellipse at 50% 40%,rgba(10,132,255,.2) 0%,rgba(100,90,255,.07) 40%,transparent 70%);
   filter:blur(60px);pointer-events:none;z-index:0;
+  overflow:hidden;
 }
 .dash-window{
   position:relative;z-index:1;
@@ -943,18 +950,23 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* ─────────────────────────────────────────
    FOOTER LOGO
 ───────────────────────────────────────── */
-.footer-logo{display:inline-block;margin-bottom:20px}
+.footer-logo{
+  display:inline-flex;align-items:center;
+  margin-bottom:20px;
+  background:none;padding:0;border-radius:0;
+  border:none;box-shadow:none;
+}
 .footer-logo-img{
   height:52px;width:auto;
   object-fit:contain;
-  opacity:.92;
-  filter:drop-shadow(0 0 10px rgba(255,255,255,.08));
+  opacity:.9;
+  filter:drop-shadow(0 0 8px rgba(255,255,255,.07));
   transition:opacity .25s, filter .25s;
   image-rendering:-webkit-optimize-contrast;
 }
 .footer-logo:hover .footer-logo-img{
   opacity:1;
-  filter:drop-shadow(0 0 14px rgba(255,255,255,.14));
+  filter:drop-shadow(0 0 10px rgba(255,255,255,.11));
 }
 
 /* ═══════════════════════════════════════════════════
@@ -1063,7 +1075,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* ── Dashboard — product depth ── */
 .dash-frame::before{
-  inset:80px 40px -80px;
+  inset:80px 40px 0;
   background:radial-gradient(ellipse at 50% 40%,rgba(10,132,255,.2) 0%,rgba(90,80,220,.07) 45%,transparent 70%);
   filter:blur(80px);
 }
