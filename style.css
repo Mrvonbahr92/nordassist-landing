@@ -142,7 +142,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 ───────────────────────────────────────── */
 #nav{
   position:fixed;top:0;left:0;right:0;z-index:999;
-  padding:14px 0;
+  padding:16px 0;
   transition:background .35s,border-color .35s,padding .35s;
   border-bottom:1px solid transparent;
 }
@@ -150,24 +150,43 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   background:rgba(7,8,12,.82);
   backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   border-bottom-color:var(--border);
-  padding:10px 0;
+  padding:12px 0;
 }
 .nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+@keyframes logo-pulse{
+  0%,100%{
+    filter:drop-shadow(0 0 8px rgba(255,255,255,.07))
+           drop-shadow(0 0 6px rgba(0,140,255,.13))
+           brightness(1.04);
+  }
+  50%{
+    filter:drop-shadow(0 0 14px rgba(255,255,255,.13))
+           drop-shadow(0 0 10px rgba(0,140,255,.22))
+           brightness(1.08);
+  }
+}
 .nav-logo{
   display:flex;align-items:center;
   background:none;padding:0;border-radius:0;
   border:none;box-shadow:none;outline:none;
 }
 .nav-logo img{
-  height:60px;width:auto;display:block;
+  height:76px;width:auto;display:block;
   object-fit:contain;object-position:left center;
   image-rendering:-webkit-optimize-contrast;
-  filter:drop-shadow(0 0 8px rgba(255,255,255,.08)) drop-shadow(0 0 3px rgba(10,132,255,.10));
-  transition:opacity .2s, filter .2s;
+  filter:drop-shadow(0 0 8px rgba(255,255,255,.07))
+         drop-shadow(0 0 6px rgba(0,140,255,.13))
+         brightness(1.04);
+  animation:logo-pulse 7s ease-in-out infinite;
+  transition:opacity .3s ease, transform .3s ease;
 }
 .nav-logo:hover img{
-  opacity:.9;
-  filter:drop-shadow(0 0 10px rgba(255,255,255,.12)) drop-shadow(0 0 4px rgba(10,132,255,.14));
+  opacity:.95;
+  transform:scale(1.04);
+  animation-play-state:paused;
+  filter:drop-shadow(0 0 16px rgba(255,255,255,.14))
+         drop-shadow(0 0 12px rgba(0,140,255,.26))
+         brightness(1.10);
 }
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{font-size:13.5px;font-weight:500;color:var(--text-2);transition:color .18s}
@@ -608,129 +627,151 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 ───────────────────────────────────────── */
 #pricing{
   padding:var(--sec) 0;
-  background:var(--bg-raise);
+  background:var(--bg);
 }
 
-/* ── Pricing grid ── */
-.pricing-header{text-align:center;margin-bottom:64px}
+/* Header */
+.pricing-header{text-align:center;margin-bottom:72px}
 .pricing-subtext{
-  margin-top:18px;font-size:17px;color:var(--text-2);
-  max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;
-}
-.pricing-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:24px;align-items:center;
+  margin-top:16px;font-size:17px;color:var(--text-2);
+  max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6;
 }
 
-/* Base card — white on dark */
+/* Grid */
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  align-items:center;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:24px;
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
+}
+
+/* Base card */
 .pricing-card{
-  position:relative;border-radius:24px;
-  background:#ffffff;
-  border:1px solid rgba(255,255,255,0.06);
-  box-shadow:0 8px 40px rgba(0,0,0,.4);
-  transition:transform .22s var(--ease-out),box-shadow .22s var(--ease-out);
+  position:relative;
+  border-right:1px solid rgba(255,255,255,.07);
+  transition:background .25s var(--ease);
 }
-.pricing-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 48px rgba(48,209,88,.14),0 8px 40px rgba(0,0,0,.45);
-}
-.pricing-card-inner{padding:40px 36px 36px}
+.pricing-card:last-child{border-right:none}
+.pricing-card:hover{background:rgba(255,255,255,.03)}
+.pricing-card-inner{padding:44px 36px 40px}
 
 /* Featured card (Growth) */
 .pricing-card--featured{
-  border:1.5px solid rgba(48,209,88,.45);
-  box-shadow:0 0 0 1px rgba(48,209,88,.12),0 16px 56px rgba(48,209,88,.2),0 8px 40px rgba(0,0,0,.4);
-  margin-top:-8px;
-  margin-bottom:-8px;
+  background:rgba(48,209,88,.04);
+  border-right:1px solid rgba(48,209,88,.15);
+  border-left:1px solid rgba(48,209,88,.15);
+  box-shadow:inset 0 0 60px rgba(48,209,88,.03);
 }
-.pricing-card--featured:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 0 1px rgba(48,209,88,.3),0 20px 64px rgba(48,209,88,.3),0 8px 40px rgba(0,0,0,.5);
-}
+.pricing-card--featured:hover{background:rgba(48,209,88,.07)}
 
 /* Badge */
 .pricing-badge{
-  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
-  background:var(--green);color:#fff;
-  font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
-  padding:5px 16px;border-radius:980px;white-space:nowrap;
-  box-shadow:0 2px 12px rgba(48,209,88,.45);
+  display:inline-flex;align-items:center;
+  background:rgba(48,209,88,.15);
+  color:var(--green);
+  font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 12px;border-radius:980px;margin-bottom:20px;
+  border:1px solid rgba(48,209,88,.25);
 }
 
 /* Plan name */
 .pricing-plan-name{
-  font-size:12.5px;font-weight:700;letter-spacing:.07em;
-  text-transform:uppercase;color:#86868b;margin-bottom:18px;
+  font-size:11px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-3);margin-bottom:20px;
 }
 .pricing-card--featured .pricing-plan-name{color:var(--green)}
 
 /* Price */
-.pricing-price{display:flex;align-items:baseline;gap:6px;margin-bottom:12px}
+.pricing-price{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
 .pricing-amount{
-  font-size:clamp(38px,4.5vw,50px);font-weight:800;
-  letter-spacing:-.04em;color:#1d1d1f;line-height:1;
+  font-size:clamp(36px,4vw,48px);font-weight:800;
+  letter-spacing:-.04em;color:var(--text);line-height:1;
 }
-.pricing-amount--sm{font-size:clamp(26px,3vw,34px)}
-.pricing-period{font-size:13.5px;font-weight:500;color:#86868b}
+.pricing-amount--sm{font-size:clamp(24px,3vw,32px)}
+.pricing-period{font-size:13px;font-weight:400;color:var(--text-3)}
 
 /* Description */
-.pricing-desc{font-size:14px;color:#6e6e73;line-height:1.55;margin-bottom:26px}
+.pricing-desc{
+  font-size:14px;color:var(--text-2);line-height:1.6;
+  margin-bottom:28px;min-height:44px;
+}
 
 /* Divider */
-.pricing-divider{height:1px;background:rgba(0,0,0,.07);margin-bottom:22px}
+.pricing-divider{
+  height:1px;
+  background:rgba(255,255,255,.06);
+  margin-bottom:24px;
+}
+.pricing-card--featured .pricing-divider{background:rgba(48,209,88,.15)}
 
 /* Feature list */
 .pricing-features{
-  list-style:none;padding:0;margin:0 0 30px;
-  display:flex;flex-direction:column;gap:12px;
+  list-style:none;padding:0;margin:0 0 36px;
+  display:flex;flex-direction:column;gap:14px;
+  flex:1;
 }
 .pricing-features li{
   display:flex;align-items:flex-start;gap:10px;
-  font-size:13.5px;color:#3a3a3c;line-height:1.45;
+  font-size:13.5px;color:var(--text-2);line-height:1.5;
 }
-.pricing-features li svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;color:var(--blue)}
-.pricing-features--green li svg{color:var(--green)}
+.pricing-features li svg{
+  width:15px;height:15px;flex-shrink:0;
+  margin-top:2px;color:var(--text-3);
+  opacity:.7;
+}
+.pricing-features--green li svg{color:var(--green);opacity:1}
 
 /* CTA buttons */
 .pricing-cta{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:100%;padding:13px 20px;border-radius:12px;
-  font-size:14px;font-weight:600;
+  display:block;width:100%;
+  padding:12px 20px;border-radius:10px;
+  font-size:13.5px;font-weight:600;
+  text-align:center;
   transition:all .2s var(--ease);
+  letter-spacing:.01em;
 }
-.pricing-cta--outline{
-  border:1.5px solid rgba(0,0,0,.12);
-  color:#1d1d1f;background:transparent;
+.pricing-cta--ghost{
+  border:1px solid rgba(255,255,255,.10);
+  color:var(--text-2);
+  background:rgba(255,255,255,.03);
 }
-.pricing-cta--outline:hover{
-  background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.2);
+.pricing-cta--ghost:hover{
+  border-color:rgba(255,255,255,.18);
+  color:var(--text);
+  background:rgba(255,255,255,.06);
   transform:translateY(-1px);
 }
 .pricing-cta--green{
-  background:var(--green);color:#fff;
-  border:1.5px solid transparent;
-  box-shadow:0 4px 16px rgba(48,209,88,.35);
+  background:var(--green);
+  color:#000;
+  font-weight:700;
+  border:1px solid transparent;
+  box-shadow:0 0 20px rgba(48,209,88,.25);
 }
 .pricing-cta--green:hover{
-  background:#28c249;
-  box-shadow:0 6px 22px rgba(48,209,88,.52);
+  background:#34e865;
+  box-shadow:0 0 32px rgba(48,209,88,.4);
   transform:translateY(-1px);
 }
 
 /* Tagline strip */
 .pricing-tagline{
-  text-align:center;margin-top:72px;
-  padding:38px 48px;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--border-hi);
-  border-radius:20px;
-  max-width:720px;margin-left:auto;margin-right:auto;
+  text-align:center;margin-top:64px;
+  padding:32px 40px;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  max-width:680px;margin-left:auto;margin-right:auto;
 }
 .pricing-tagline-title{
-  font-size:19px;font-weight:700;color:var(--text);
-  margin-bottom:10px;letter-spacing:-.02em;
+  font-size:17px;font-weight:600;color:var(--text);
+  margin-bottom:8px;letter-spacing:-.02em;
 }
-.pricing-tagline-text{font-size:15px;color:var(--text-2);line-height:1.65}
+.pricing-tagline-text{font-size:14px;color:var(--text-3);line-height:1.7}
 
 /* ─────────────────────────────────────────
    ⑪ FAQ
@@ -959,14 +1000,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .footer-logo-img{
   height:52px;width:auto;
   object-fit:contain;
-  opacity:.9;
-  filter:drop-shadow(0 0 8px rgba(255,255,255,.07));
-  transition:opacity .25s, filter .25s;
+  opacity:.88;
+  filter:drop-shadow(0 0 6px rgba(255,255,255,.05))
+         drop-shadow(0 0 5px rgba(0,140,255,.09))
+         brightness(1.03);
+  animation:logo-pulse 9s ease-in-out infinite;
+  animation-delay:-3s;
+  transition:opacity .3s ease, transform .3s ease;
   image-rendering:-webkit-optimize-contrast;
 }
 .footer-logo:hover .footer-logo-img{
   opacity:1;
-  filter:drop-shadow(0 0 10px rgba(255,255,255,.11));
+  transform:scale(1.03);
+  animation-play-state:paused;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -1336,13 +1382,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   /* ────────────────
      NAV / HEADER
   ──────────────── */
-  #nav         { padding:10px 0 }
-  #nav.scrolled{ padding:8px 0; background:rgba(7,8,12,.92) }
-  .nav-logo img{ height:48px }
+  #nav         { padding:12px 0 }
+  #nav.scrolled{ padding:10px 0; background:rgba(7,8,12,.92) }
+  .nav-logo img{ height:60px }
   .nav-wrap    { gap:8px }
   .nav-cta     { padding:7px 13px; font-size:12px; gap:4px; letter-spacing:.01em }
   .hamburger   { padding:2px 4px }
-  .footer-logo-img{ height:42px }
+  .footer-logo-img{ height:44px }
 
   /* ────────────────
      HERO
@@ -1580,15 +1626,24 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   #pricing { padding:var(--sec-m) 0 }
   .pricing-header { margin-bottom:44px }
   .pricing-subtext { font-size:15px }
-  .pricing-grid { grid-template-columns:1fr; gap:20px }
-  .pricing-card--featured { margin-top:0; margin-bottom:0 }
-  .pricing-card--featured:hover { transform:translateY(-4px) }
+  .pricing-grid {
+    grid-template-columns:1fr;
+    border-radius:16px;
+  }
+  .pricing-card { border-right:none; border-bottom:1px solid rgba(255,255,255,.07) }
+  .pricing-card:last-child { border-bottom:none }
+  .pricing-card--featured {
+    border-left:none; border-right:none;
+    border-top:1px solid rgba(48,209,88,.15);
+    border-bottom:1px solid rgba(48,209,88,.15);
+  }
   .pricing-card-inner { padding:32px 24px 28px }
   .pricing-amount { font-size:clamp(34px,9vw,44px) }
-  .pricing-amount--sm { font-size:clamp(24px,7vw,30px) }
-  .pricing-tagline { padding:28px 22px; margin-top:44px }
-  .pricing-tagline-title { font-size:16px }
-  .pricing-tagline-text { font-size:13.5px }
+  .pricing-amount--sm { font-size:clamp(22px,7vw,28px) }
+  .pricing-desc { min-height:auto }
+  .pricing-tagline { padding:24px 20px; margin-top:40px }
+  .pricing-tagline-title { font-size:15px }
+  .pricing-tagline-text { font-size:13px }
 
   /* ────────────────
      FAQ
