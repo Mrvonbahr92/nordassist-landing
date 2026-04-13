@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Om oss — NordAssist</title>
+  <meta name="description" content="Lär dig mer om NordAssist — AI-säljaren som aldrig sover."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./style.css"/>
+  <style>
+    .page-hero{padding:160px 0 80px;text-align:center}
+    .page-hero .eyebrow{justify-content:center;margin-bottom:20px}
+    .page-hero .h1{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-.04em;line-height:1.05;color:var(--text);margin-bottom:20px}
+    .page-hero .lead{max-width:520px;margin:0 auto;text-align:center}
+    .page-body{padding:0 0 var(--sec)}
+    .page-section{max-width:720px;margin:0 auto;padding:0 40px}
+    .page-section + .page-section{margin-top:64px}
+    .page-h2{font-size:22px;font-weight:700;letter-spacing:-.025em;color:var(--text);margin-bottom:16px}
+    .page-p{font-size:16px;color:var(--text-2);line-height:1.75;margin-bottom:16px}
+    .page-p:last-child{margin-bottom:0}
+    .page-divider{width:1px;height:64px;background:linear-gradient(to bottom,transparent,rgba(10,132,255,.25),transparent);margin:64px auto}
+    .value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:32px}
+    .value-card{background:var(--bg-raise);border:1px solid var(--border);border-radius:16px;padding:24px}
+    .value-card-icon{width:36px;height:36px;border-radius:10px;background:var(--blue-dim);border:1px solid var(--blue-border);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .value-card-icon svg{width:18px;height:18px;color:var(--blue-2)}
+    .value-card-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.01em}
+    .value-card-desc{font-size:13.5px;color:var(--text-3);line-height:1.65}
+
+    /* ── Founder section ── */
+    .founder-wrap{max-width:800px;margin:0 auto;padding:0 40px}
+    .founder-card{
+      display:flex;gap:52px;align-items:flex-start;
+      background:linear-gradient(145deg,rgba(255,255,255,0.055) 0%,rgba(255,255,255,0.022) 100%);
+      border:1px solid rgba(255,255,255,0.09);
+      border-radius:24px;padding:48px;
+      position:relative;overflow:hidden;
+      box-shadow:0 24px 80px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.03);
+    }
+    .founder-card::before{
+      content:'';position:absolute;top:-60px;right:-60px;
+      width:320px;height:320px;
+      background:radial-gradient(circle,rgba(10,132,255,0.09) 0%,transparent 65%);
+      pointer-events:none;
+    }
+    .founder-img-col{flex-shrink:0;position:relative;z-index:1}
+    .founder-img-frame{
+      width:196px;height:248px;border-radius:18px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 28px 72px rgba(0,0,0,0.60),
+        0 0 48px rgba(10,132,255,0.10);
+    }
+    .founder-img{
+      width:100%;height:100%;object-fit:cover;object-position:center top;display:block;
+      border-radius:18px;
+      filter:grayscale(100%);
+      transition:filter .4s ease, transform .4s ease, box-shadow .4s ease;
+      cursor:default;
+    }
+    .founder-img:hover{
+      filter:grayscale(0%);
+      transform:scale(1.03);
+      box-shadow:0 0 40px rgba(10,132,255,0.22);
+    }
+    .founder-text-col{flex:1;min-width:0;padding-top:6px;position:relative;z-index:1}
+    .founder-text-col .page-p{font-size:15.5px;margin-bottom:14px}
+    .founder-byline{
+      margin-top:28px;padding-top:22px;
+      border-top:1px solid rgba(255,255,255,0.07);
+    }
+    .founder-byline-name{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.015em}
+    .founder-byline-role{font-size:12.5px;color:var(--text-3);margin-top:5px;letter-spacing:.01em}
+
+    @media(max-width:600px){
+      .page-hero{padding:100px 0 56px}
+      .page-section{padding:0 20px}
+      .value-grid{grid-template-columns:1fr}
+      .founder-wrap{padding:0 20px}
+      .founder-card{flex-direction:column;gap:28px;padding:28px 22px}
+      .founder-img-frame{width:100%;height:280px;border-radius:14px}
+      .founder-img{height:280px;border-radius:14px;object-position:center 15%}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" aria-label="Huvudmeny">
+  <div class="w">
+    <div class="nav-wrap">
+      <a href="/" class="nav-logo" aria-label="NordAssist startsida">
+        <img src="./assets/nordassist-logo.png" alt="NordAssist"/>
+      </a>
+      <div class="nav-right">
+        <a href="https://app.getnordassist.com/login" class="nav-login">Logga in</a>
+        <a href="https://app.getnordassist.com/signup" class="nav-cta">
+          Starta gratis
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="w-xs">
+    <div class="eyebrow">Om oss</div>
+    <h1 class="h1">Vi byggde säljaren<br>som aldrig sover.</h1>
+    <p class="lead">NordAssist är ett svenskt SaaS-bolag med ett tydligt uppdrag: att ge varje företag tillgång till en AI-säljare som arbetar dygnet runt — utan att ta semester.</p>
+  </div>
+</section>
+
+<div class="page-body">
+  <div class="page-section">
+    <h2 class="page-h2">Bakgrunden</h2>
+    <p class="page-p">Vi insåg att de flesta företag tappar sina potentiella kunder inte för att produkten är dålig — utan för att ingen svarade i rätt ögonblick. Besökaren kom till hemsidan, hittade inte svar snabbt nog, och lämnade. För alltid.</p>
+    <p class="page-p">NordAssist löser exakt det problemet. Vår AI-assistent välkomnar varje besökare, ställer rätt frågor, kvalificerar köpintresset och ser till att du aldrig missar ett lead igen — oavsett tid på dygnet.</p>
+  </div>
+
+  <div class="page-divider"></div>
+
+  <!-- ── Grundare ── -->
+  <div class="founder-wrap">
+    <div class="founder-card">
+
+      <div class="founder-img-col">
+        <div class="founder-img-frame">
+          <img src="./assets/nils-von-bahr.png" alt="Nils von Bahr, grundare NordAssist" class="founder-img"/>
+        </div>
+      </div>
+
+      <div class="founder-text-col">
+        <div class="eyebrow" style="margin-bottom:22px">Bakom NordAssist</div>
+        <p class="page-p">Jag heter Nils von Bahr och är grundaren bakom NordAssist.</p>
+        <p class="page-p">Idén föddes ur ett enkelt problem: företag tappar kunder varje dag – inte för att deras tjänst är dålig, utan för att ingen svarar i rätt tid.</p>
+        <p class="page-p">Jag ville bygga något som faktiskt löser det på riktigt. Inte bara en chatbot – utan en AI-säljare som arbetar dygnet runt, kvalificerar leads och hjälper företag att växa.</p>
+        <p class="page-p">NordAssist är byggt för företag som vill ta sin försäljning på allvar.</p>
+        <div class="founder-byline">
+          <div class="founder-byline-name">Nils von Bahr</div>
+          <div class="founder-byline-role">Founder, NordAssist</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="page-divider"></div>
+
+  <div class="page-section">
+    <h2 class="page-h2">Vad vi tror på</h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="value-card-title">Trovärdighet</div>
+        <div class="value-card-desc">Vi bygger AI-lösningar som känns genuina och hjälper användare — inte vilseleder dem.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <div class="value-card-title">Resultat</div>
+        <div class="value-card-desc">Vi mäter framgång i faktiska leads, bokade möten och ökad omsättning — inte klick.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <div class="value-card-title">Enkelhet</div>
+        <div class="value-card-desc">En rad kod. Igång på 5 minuter. Ingen teknisk kunskap krävs.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-divider"></div>
+
+  <div class="page-section" style="text-align:center">
+    <h2 class="page-h2">Redo att testa?</h2>
+    <p class="page-p" style="text-align:center;margin-bottom:32px">Starta 14 dagars gratis test och se hur NordAssist kan förändra hur din hemsida säljer.</p>
+    <a href="https://app.getnordassist.com/signup" class="btn btn-primary">
+      Skapa konto gratis
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="w">
+    <div class="footer-bottom" style="justify-content:center;border-top:1px solid var(--border);padding-top:28px">
+      <span class="footer-copy">© 2026 NordAssist. Alla rättigheter förbehållna.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+</script>
+</body>
+</html>

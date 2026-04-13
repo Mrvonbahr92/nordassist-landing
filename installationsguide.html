@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Installationsguide — NordAssist</title>
+  <meta name="description" content="Kom igång med NordAssist på 5 minuter. Steg-för-steg installationsguide."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./style.css"/>
+  <style>
+    .page-hero{padding:160px 0 72px;text-align:center}
+    .page-hero .eyebrow{justify-content:center;margin-bottom:20px}
+    .page-hero .h1{font-size:clamp(34px,5vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1.05;color:var(--text);margin-bottom:20px}
+    .page-hero .lead{max-width:480px;margin:0 auto;text-align:center}
+    .guide-wrap{max-width:720px;margin:0 auto;padding:0 40px var(--sec)}
+    .guide-step{display:flex;gap:32px;margin-bottom:56px;align-items:flex-start}
+    .guide-step-num{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--blue);opacity:.7;flex-shrink:0;width:32px;padding-top:4px}
+    .guide-step-body{}
+    .guide-step-title{font-size:20px;font-weight:700;letter-spacing:-.025em;color:var(--text);margin-bottom:12px}
+    .guide-step-desc{font-size:15px;color:var(--text-2);line-height:1.75;margin-bottom:16px}
+    .guide-code{background:var(--bg-float);border:1px solid var(--border-hi);border-radius:12px;padding:16px 20px;font-family:'SF Mono','Fira Code',monospace;font-size:13px;color:#a8e6cf;overflow-x:auto;white-space:pre}
+    .guide-note{background:var(--blue-dim);border:1px solid var(--blue-border);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--text-2);line-height:1.65;margin-top:16px}
+    .guide-note strong{color:var(--blue-2)}
+    .guide-divider{height:1px;background:var(--border);margin:16px 0 56px}
+    .platform-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .platform-tag{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:12.5px;color:var(--text-2);font-weight:500}
+    @media(max-width:600px){
+      .page-hero{padding:100px 0 48px}
+      .guide-wrap{padding:0 20px 64px}
+      .guide-step{flex-direction:column;gap:12px}
+      .guide-step-num{width:auto}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" aria-label="Huvudmeny">
+  <div class="w">
+    <div class="nav-wrap">
+      <a href="/" class="nav-logo" aria-label="NordAssist startsida">
+        <img src="./assets/nordassist-logo.png" alt="NordAssist"/>
+      </a>
+      <div class="nav-right">
+        <a href="https://app.getnordassist.com/login" class="nav-login">Logga in</a>
+        <a href="https://app.getnordassist.com/signup" class="nav-cta">
+          Starta gratis
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="w-xs">
+    <div class="eyebrow">Installationsguide</div>
+    <h1 class="h1">Igång på 5 minuter.</h1>
+    <p class="lead">Ingen teknisk kunskap behövs. Följ dessa tre steg och NordAssist är live på din hemsida.</p>
+  </div>
+</section>
+
+<div class="guide-wrap">
+
+  <div class="guide-step">
+    <div class="guide-step-num">01</div>
+    <div class="guide-step-body">
+      <div class="guide-step-title">Skapa ditt konto</div>
+      <div class="guide-step-desc">Starta ett gratis 14-dagarskonto på NordAssist. Inget kreditkort behövs vid registreringen.</div>
+      <a href="https://app.getnordassist.com/signup" class="btn btn-primary" style="display:inline-flex;margin-top:4px">
+        Skapa konto gratis →
+      </a>
+    </div>
+  </div>
+
+  <div class="guide-divider"></div>
+
+  <div class="guide-step">
+    <div class="guide-step-num">02</div>
+    <div class="guide-step-body">
+      <div class="guide-step-title">Hämta din unika kod</div>
+      <div class="guide-step-desc">Efter att du loggat in, gå till <strong style="color:var(--text)">Inställningar → Widget</strong> i din dashboard. Där hittar du ett kodblock som ser ut ungefär såhär:</div>
+      <div class="guide-code">&lt;script src="https://widget.getnordassist.com/widget.js"
+  data-client-id="DIN_UNIKA_KOD"
+  async&gt;&lt;/script&gt;</div>
+      <div class="guide-note"><strong>Tips:</strong> Din unika <code>data-client-id</code> genereras automatiskt och är kopplad till ditt konto.</div>
+    </div>
+  </div>
+
+  <div class="guide-divider"></div>
+
+  <div class="guide-step">
+    <div class="guide-step-num">03</div>
+    <div class="guide-step-body">
+      <div class="guide-step-title">Klistra in koden på din hemsida</div>
+      <div class="guide-step-desc">Klistra in kodblocket precis innan <code style="color:var(--blue-2)">&lt;/body&gt;</code> på alla sidor du vill att NordAssist ska vara aktiv på. Det är allt.</div>
+      <div class="platform-list">
+        <span class="platform-tag">WordPress</span>
+        <span class="platform-tag">Webflow</span>
+        <span class="platform-tag">Shopify</span>
+        <span class="platform-tag">Squarespace</span>
+        <span class="platform-tag">Wix</span>
+        <span class="platform-tag">Framer</span>
+        <span class="platform-tag">Eget system</span>
+      </div>
+      <div class="guide-note" style="margin-top:20px"><strong>NordAssist fungerar med alla plattformar</strong> — om du kan lägga till ett script-block på din sida kan du använda NordAssist.</div>
+    </div>
+  </div>
+
+  <div class="guide-divider"></div>
+
+  <div style="text-align:center;padding-top:8px">
+    <p style="font-size:15px;color:var(--text-2);margin-bottom:24px">Behöver du hjälp? Kontakta oss så löser vi det tillsammans.</p>
+    <a href="mailto:hej@nordassist.ai" class="btn btn-ghost">Kontakta support →</a>
+  </div>
+
+</div>
+
+<footer id="footer">
+  <div class="w">
+    <div class="footer-bottom" style="justify-content:center;border-top:1px solid var(--border);padding-top:28px">
+      <span class="footer-copy">© 2026 NordAssist. Alla rättigheter förbehållna.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+</script>
+</body>
+</html>

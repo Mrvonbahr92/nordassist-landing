@@ -2,10 +2,11 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "nordassist-website",
+      "name": "nordassist-landing",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["http-server", ".", "-p", "4000", "--cors", "-c-1"],
-      "port": 4000
+      "runtimeArgs": ["http-server", ".", "--cors", "-c-1"],
+      "port": 4000,
+      "autoPort": true
     }
   ]
 }

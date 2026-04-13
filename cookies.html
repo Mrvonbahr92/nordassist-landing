@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cookies — NordAssist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./style.css"/>
+  <style>
+    .policy-hero{padding:160px 0 64px;text-align:center}
+    .policy-hero .eyebrow{justify-content:center;margin-bottom:20px}
+    .policy-hero .h1{font-size:clamp(30px,4.5vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1.06;color:var(--text);margin-bottom:16px}
+    .policy-meta{font-size:13px;color:var(--text-3)}
+    .policy-body{max-width:680px;margin:0 auto;padding:0 40px var(--sec)}
+    .policy-section{margin-bottom:48px}
+    .policy-h2{font-size:18px;font-weight:700;letter-spacing:-.02em;color:var(--text);margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+    .policy-p{font-size:15px;color:var(--text-2);line-height:1.78;margin-bottom:14px}
+    .policy-p:last-child{margin-bottom:0}
+    .cookie-table{width:100%;border-collapse:collapse;margin-top:16px;margin-bottom:8px}
+    .cookie-table th{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+    .cookie-table td{font-size:13.5px;color:var(--text-2);padding:12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55}
+    .cookie-table td:first-child{font-family:'SF Mono','Fira Code',monospace;color:var(--blue-2);font-size:12.5px}
+    @media(max-width:600px){
+      .policy-hero{padding:100px 0 48px}
+      .policy-body{padding:0 20px 64px}
+      .cookie-table{font-size:12px}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" aria-label="Huvudmeny">
+  <div class="w">
+    <div class="nav-wrap">
+      <a href="/" class="nav-logo" aria-label="NordAssist startsida">
+        <img src="./assets/nordassist-logo.png" alt="NordAssist"/>
+      </a>
+      <div class="nav-right">
+        <a href="https://app.getnordassist.com/login" class="nav-login">Logga in</a>
+        <a href="https://app.getnordassist.com/signup" class="nav-cta">Starta gratis</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="policy-hero">
+  <div class="w-xs">
+    <div class="eyebrow">Juridik</div>
+    <h1 class="h1">Cookiepolicy</h1>
+    <p class="policy-meta">Senast uppdaterad: April 2026</p>
+  </div>
+</section>
+
+<div class="policy-body">
+
+  <div class="policy-section">
+    <h2 class="policy-h2">Vad är cookies?</h2>
+    <p class="policy-p">Cookies är små textfiler som sparas i din webbläsare när du besöker en webbplats. De används för att webbplatsen ska fungera korrekt och för att vi ska kunna förstå hur besökare använder tjänsten.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2 class="policy-h2">Cookies vi använder</h2>
+    <table class="cookie-table">
+      <thead>
+        <tr>
+          <th>Cookie</th>
+          <th>Syfte</th>
+          <th>Varaktighet</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>na_session</td>
+          <td>Håller dig inloggad i dashboarden</td>
+          <td>7 dagar</td>
+        </tr>
+        <tr>
+          <td>na_demo</td>
+          <td>Identifierar demo-läge i dashboarden</td>
+          <td>Session</td>
+        </tr>
+        <tr>
+          <td>na_widget_*</td>
+          <td>Sparar konversationsläge och session för widgeten</td>
+          <td>30 dagar</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="policy-p" style="margin-top:16px">Vi använder inga tredjeparts tracking-cookies eller reklam-cookies.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2 class="policy-h2">Hantera cookies</h2>
+    <p class="policy-p">Du kan när som helst radera eller blockera cookies via din webbläsares inställningar. Observera att vissa delar av tjänsten kan sluta fungera om du blockerar nödvändiga cookies (t.ex. inloggning).</p>
+  </div>
+
+  <div class="policy-section">
+    <h2 class="policy-h2">Kontakt</h2>
+    <p class="policy-p">Frågor om vår cookieanvändning? Kontakta oss på <a href="mailto:hej@nordassist.ai" style="color:var(--blue-2)">hej@nordassist.ai</a>.</p>
+  </div>
+
+</div>
+
+<footer id="footer">
+  <div class="w">
+    <div class="footer-bottom" style="border-top:1px solid var(--border);padding-top:28px">
+      <span class="footer-copy">© 2026 NordAssist. Alla rättigheter förbehållna.</span>
+      <div class="footer-legal">
+        <a href="/integritetspolicy.html">Integritetspolicy</a>
+        <a href="/anvandarvillkor.html">Användarvillkor</a>
+        <a href="/cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+</script>
+</body>
+</html>
