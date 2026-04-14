@@ -1,39 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 32" fill="none">
   <!--
     Nordassist — text-only wordmark
-    Dotless-i (U+0131) — font renders no dot.
-    Glowing blue dot at i-position with asymmetric halo + hover lift.
+    Dotless-i (U+0131). Layered glow dot: outer → inner → core → specular.
+    All glow via radialGradient (no filter/blur dependency).
   -->
   <defs>
+
+    <!-- OUTER GLOW — large, very soft, asymmetric falloff -->
+    <radialGradient id="nd-g-outer" cx="44%" cy="40%" r="50%" fx="40%" fy="34%">
+      <stop offset="0%"   stop-color="#0A84FF" stop-opacity="0.28"/>
+      <stop offset="45%"  stop-color="#0A84FF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0A84FF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- INNER GLOW — tighter, more saturated -->
+    <radialGradient id="nd-g-inner" cx="42%" cy="38%" r="50%" fx="38%" fy="30%">
+      <stop offset="0%"   stop-color="#4DA6FF" stop-opacity="0.72"/>
+      <stop offset="60%"  stop-color="#0A84FF" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#0A84FF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- SPECULAR — tiny white hotspot, off-centre upper-left -->
+    <radialGradient id="nd-g-spec" cx="32%" cy="26%" r="50%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="55%"  stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+
     <style>
-      @keyframes nd-pulse{
-        0%  {opacity:.07}
-        42% {opacity:.17}
-        100%{opacity:.07}
+      /* Outer glow — slowest pulse, most subtle */
+      @keyframes nd-outer {
+        0%,100% { opacity: .72 }
+        48%     { opacity: 1   }
       }
-      .nd-halo{animation:nd-pulse 5.5s cubic-bezier(.4,0,.2,1) infinite}
-      /* Hover: only the dot group brightens */
-      .nd-dot-group{
-        transition:filter .2s ease;
+      /* Inner glow — slightly offset timing */
+      @keyframes nd-inner {
+        0%,100% { opacity: .80 }
+        52%     { opacity: 1   }
       }
-      .nd-dot-group:hover{
-        filter:brightness(1.28) drop-shadow(0 0 3px rgba(10,132,255,.55));
+      /* Core — barely moves */
+      @keyframes nd-core {
+        0%,100% { opacity: .88 }
+        50%     { opacity: 1   }
       }
+      .nd-outer { animation: nd-outer 4.8s cubic-bezier(.4,0,.2,1) infinite }
+      .nd-inner { animation: nd-inner 4.8s cubic-bezier(.4,0,.2,1) infinite; animation-delay:.4s }
+      .nd-core  { animation: nd-core  4.8s cubic-bezier(.4,0,.2,1) infinite; animation-delay:.8s }
+
+      /* Hover: group brightens slightly */
+      .nd-dot { transition: filter .2s ease }
+      .nd-dot:hover { filter: brightness(1.22) }
     </style>
 
-    <!-- Asymmetric radial — falloff is slightly tighter on lower-right
-         mimicking a light source from upper-left -->
-    <radialGradient id="nd-halo-g" cx="46%" cy="44%" r="58%" fx="38%" fy="34%">
-      <stop offset="0%"   stop-color="#0A84FF" stop-opacity="1"/>
-      <stop offset="55%"  stop-color="#0A84FF" stop-opacity="0.38"/>
-      <stop offset="100%" stop-color="#0A84FF" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- Inner highlight — off-centre to feel like a real light point -->
-    <radialGradient id="nd-core" cx="34%" cy="28%" r="55%">
-      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.42"/>
-      <stop offset="100%" stop-color="#0A84FF" stop-opacity="0"/>
-    </radialGradient>
   </defs>
 
   <!-- Wordmark: "Nordass" + dotless-i + "st" -->
@@ -43,13 +61,16 @@
     font-size="17" font-weight="600" letter-spacing="-0.3"
     fill="#FFFFFF">Nordass&#x0131;st</text>
 
-  <!-- Dot group — interactive -->
-  <g class="nd-dot-group">
-    <!-- Halo: centre slightly offset (+0.6, -0.5) from core for asymmetry -->
-    <circle class="nd-halo" cx="72.1" cy="8.0" r="3.5" fill="url(#nd-halo-g)"/>
-    <!-- Core dot — precisely at i-dot position -->
-    <circle cx="71.5" cy="8.5" r="1.6" fill="#0A84FF"/>
-    <!-- Inner highlight overlay -->
-    <circle cx="71.5" cy="8.5" r="1.6" fill="url(#nd-core)"/>
+  <!-- Layered glow dot — stacked from outside in -->
+  <g class="nd-dot">
+    <!-- Layer 1: outer glow — r=7, very soft -->
+    <circle class="nd-outer" cx="71.8" cy="8.3" r="7"   fill="url(#nd-g-outer)"/>
+    <!-- Layer 2: inner glow — r=3.4, richer -->
+    <circle class="nd-inner" cx="71.6" cy="8.4" r="3.4" fill="url(#nd-g-inner)"/>
+    <!-- Layer 3: core dot — solid, crisp -->
+    <circle class="nd-core"  cx="71.5" cy="8.5" r="1.6" fill="#0A84FF"/>
+    <!-- Layer 4: specular highlight — pure white hotspot, no animation -->
+    <circle                  cx="71.5" cy="8.5" r="1.6" fill="url(#nd-g-spec)"/>
   </g>
+
 </svg>
