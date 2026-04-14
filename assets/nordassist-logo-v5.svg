@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 32" fill="none">
+  <!--
+    Nordassist — text-only wordmark
+    Dotless-i (U+0131). Tight layered glow: crisp core, controlled falloff.
+  -->
+  <defs>
+
+    <!-- OUTER glow — tight r=5, low opacity, quick falloff -->
+    <radialGradient id="nd-g-outer" cx="44%" cy="40%" r="50%" fx="40%" fy="34%">
+      <stop offset="0%"   stop-color="#0A84FF" stop-opacity="0.18"/>
+      <stop offset="50%"  stop-color="#0A84FF" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#0A84FF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- INNER glow — punchy, saturated, tight r=2.8 -->
+    <radialGradient id="nd-g-inner" cx="42%" cy="38%" r="50%" fx="36%" fy="28%">
+      <stop offset="0%"   stop-color="#3FA8FF" stop-opacity="0.90"/>
+      <stop offset="45%"  stop-color="#0A84FF" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#0A84FF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- CORE fill — rich saturated blue, slight center brightness -->
+    <radialGradient id="nd-g-core" cx="38%" cy="30%" r="65%">
+      <stop offset="0%"   stop-color="#5AB8FF" stop-opacity="1"/>
+      <stop offset="55%"  stop-color="#0A84FF" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#006FD6" stop-opacity="1"/>
+    </radialGradient>
+
+    <!-- SPECULAR — tiny white reflection, upper-left -->
+    <radialGradient id="nd-g-spec" cx="28%" cy="22%" r="45%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.52"/>
+      <stop offset="60%"  stop-color="#FFFFFF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <style>
+      /* Breathing — barely perceptible, asymmetric timing */
+      @keyframes nd-breathe {
+        0%,100% { opacity: .92 }
+        55%     { opacity: 1   }
+      }
+      @keyframes nd-breathe-inner {
+        0%,100% { opacity: .85 }
+        50%     { opacity: 1   }
+      }
+      .nd-outer { animation: nd-breathe       5.2s cubic-bezier(.4,0,.2,1) infinite }
+      .nd-inner { animation: nd-breathe-inner 5.2s cubic-bezier(.4,0,.2,1) infinite; animation-delay:.6s }
+      .nd-dot   { transition: filter .2s ease }
+      .nd-dot:hover { filter: brightness(1.18) }
+    </style>
+
+  </defs>
+
+  <!-- Wordmark: "Nordass" + dotless-i + "st" -->
+  <text
+    x="4" y="22"
+    font-family="Inter,-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif"
+    font-size="17" font-weight="600" letter-spacing="-0.3"
+    fill="#FFFFFF">Nordass&#x0131;st</text>
+
+  <g class="nd-dot">
+    <!-- Outer glow — r=5, tight controlled fog -->
+    <circle class="nd-outer" cx="71.8" cy="8.3" r="5"   fill="url(#nd-g-outer)"/>
+    <!-- Inner glow — r=2.8, punchy halo -->
+    <circle class="nd-inner" cx="71.6" cy="8.4" r="2.8" fill="url(#nd-g-inner)"/>
+    <!-- Core — rich gradient, crisp edge -->
+    <circle                  cx="71.5" cy="8.5" r="1.6" fill="url(#nd-g-core)"/>
+    <!-- Specular — white reflection, always present, no animation -->
+    <circle                  cx="71.5" cy="8.5" r="1.6" fill="url(#nd-g-spec)"/>
+  </g>
+
+</svg>

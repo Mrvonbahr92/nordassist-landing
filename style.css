@@ -295,56 +295,54 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* ─────────────────────────────────────────
    ② VALUE PROPS (ROI grid)
 ───────────────────────────────────────── */
+@keyframes vp-dot-pulse{
+  0%,100%{box-shadow:0 0 6px 1px rgba(10,132,255,.5);opacity:.85}
+  50%    {box-shadow:0 0 14px 3px rgba(10,132,255,.8);opacity:1}
+}
 #value-props{
-  background:var(--bg);
-  padding:var(--sec) 0 calc(var(--sec) + 20px);
+  background:linear-gradient(to bottom,var(--bg) 0%,var(--bg) 60%,#05070b 100%);
+  padding:var(--sec) 0 calc(var(--sec) + 24px);
   position:relative;
   overflow:hidden;
 }
-/* Soft exit at section bottom — bridges into hook section */
-#value-props::after{
-  content:'';
-  position:absolute;
-  bottom:0; left:0; right:0;
-  height:180px;
-  background:linear-gradient(to bottom,transparent,rgba(10,132,255,.018));
-  pointer-events:none;
-  z-index:0;
-}
-/* Single centred ambient glow — sits behind the card grid */
+/* Centred ambient glow behind grid */
 #value-props::before{
   content:'';
   position:absolute;
-  top:38%; left:50%;
+  top:50%; left:50%;
   transform:translate(-50%,-50%);
-  width:860px; height:580px;
-  background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(10,132,255,.062) 0%,transparent 72%);
+  width:900px; height:600px;
+  background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(10,132,255,.055) 0%,transparent 70%);
   pointer-events:none;
   z-index:0;
 }
 .vp-header{
   text-align:center;
-  margin-bottom:36px;
+  margin-bottom:48px;
   padding:0 40px;
   position:relative;
   z-index:1;
 }
-/* Structural divider between header and cards */
-.vp-header::after{
-  content:'';
-  display:block;
-  width:180px; height:1px;
-  background:linear-gradient(90deg,transparent,rgba(10,132,255,.22),transparent);
-  margin:26px auto 0;
+/* Eyebrow dot */
+.vp-eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue-2);
+  margin-bottom:22px;
+}
+.vp-eyebrow-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#0A84FF;flex-shrink:0;
+  animation:vp-dot-pulse 2.5s ease-in-out infinite;
 }
 .vp-title{
-  font-size:clamp(28px,3.8vw,46px);
+  font-size:clamp(28px,4vw,50px);
   font-weight:800;
-  letter-spacing:-.04em;
-  line-height:1.06;
+  letter-spacing:-.042em;
+  line-height:1.02;
   color:var(--text);
-  margin-bottom:18px;
-  max-width:600px;
+  margin-bottom:20px;
+  max-width:760px;
   margin-left:auto;margin-right:auto;
 }
 .vp-sub{
@@ -355,6 +353,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   margin:0 auto;
   font-weight:400;
 }
+/* Grid — with pseudo ambient glow behind cards */
 .vp-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -364,58 +363,66 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   padding:0 40px;
   position:relative;
   z-index:1;
-  /* top padding accounts for primary card scale overflow */
-  padding-top:8px;
-  margin-top:32px;
+  padding-top:10px;
+  margin-top:40px;
+}
+.vp-grid::before{
+  content:'';
+  position:absolute;
+  inset:-80px;
+  background:radial-gradient(circle at center,rgba(10,132,255,.07) 0%,transparent 68%);
+  pointer-events:none;
+  z-index:0;
 }
 /* ── Base card ── */
 .vp-card{
-  background:linear-gradient(160deg,rgb(18,20,33) 0%,rgb(13,15,24) 100%);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:20px;
-  padding:32px 26px 28px;
+  background:linear-gradient(160deg,#111827 0%,#090f1c 100%);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:18px;
+  padding:34px 28px 30px;
   position:relative;
   overflow:hidden;
+  z-index:1;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.06),
-    0 4px 20px rgba(0,0,0,.45);
-  transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 10px 40px rgba(0,0,0,.6);
+  transition:transform .35s var(--ease-out),box-shadow .35s var(--ease-out),border-color .35s var(--ease-out);
 }
 .vp-card::after{
   content:'';
   position:absolute;inset:0;
   background:linear-gradient(135deg,transparent 35%,rgba(255,255,255,.016) 50%,transparent 65%);
   opacity:0;
-  transition:opacity .25s var(--ease);
+  transition:opacity .3s var(--ease);
   pointer-events:none;
 }
 .vp-card:hover::after{ opacity:1 }
 .vp-card:hover{
-  transform:translateY(-6px) scale(1.02);
-  border-color:rgba(10,132,255,.24);
+  transform:translateY(-10px);
+  border-color:rgba(10,132,255,.2);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.09),
-    0 18px 48px rgba(0,0,0,.55),
-    0 0 40px rgba(10,132,255,.06);
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 25px 60px rgba(0,0,0,.8),
+    0 0 25px rgba(10,132,255,.15);
 }
-/* ── Primary card — dominant focal point ── */
+/* ── Primary card ── */
 .vp-card--primary{
-  background:linear-gradient(160deg,rgb(22,25,42) 0%,rgb(16,18,30) 100%);
-  border-color:rgba(255,255,255,.11);
+  background:linear-gradient(160deg,#141b2e 0%,#0d1422 100%);
+  border-color:rgba(255,255,255,.10);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.09),
-    0 8px 36px rgba(0,0,0,.52),
-    0 0 48px rgba(10,132,255,.07);
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 12px 40px rgba(0,0,0,.6),
+    0 0 40px rgba(10,132,255,.08);
   transform:scale(1.04);
   z-index:2;
 }
 .vp-card--primary:hover{
-  transform:scale(1.04) translateY(-6px);
+  transform:scale(1.04) translateY(-10px);
   border-color:rgba(10,132,255,.28);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.11),
-    0 20px 56px rgba(0,0,0,.6),
-    0 0 60px rgba(10,132,255,.10);
+    0 28px 64px rgba(0,0,0,.85),
+    0 0 40px rgba(10,132,255,.18);
 }
 /* ── Icon ── */
 .vp-icon{
@@ -428,7 +435,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   flex-shrink:0;
   overflow:hidden;
   margin-bottom:20px;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 0 15px rgba(10,132,255,.25);
   transition:background .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
 }
 .vp-icon svg{
@@ -440,11 +449,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   color:var(--blue-2);
 }
 .vp-card:hover .vp-icon{
-  background:rgba(10,132,255,.13);
-  border-color:rgba(10,132,255,.28);
+  background:rgba(10,132,255,.14);
+  border-color:rgba(10,132,255,.32);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.07),
-    0 0 16px rgba(10,132,255,.28);
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 22px rgba(10,132,255,.38);
 }
 /* ── Text ── */
 .vp-card-title{
@@ -460,7 +469,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   color:var(--text-2);
   line-height:1.68;
 }
-/* ── Tagline ── clean, no forced decoration */
+/* ── Tagline ── */
 .vp-tagline{
   text-align:center;
   margin-top:72px;
@@ -469,12 +478,95 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   z-index:1;
 }
 .vp-tagline-text{
-  font-size:15px;
+  font-size:18px;
   font-weight:400;
-  color:var(--text-3);
-  letter-spacing:-.01em;
-  line-height:1.5;
-  opacity:.8;
+  color:rgba(255,255,255,.75);
+  letter-spacing:-.015em;
+  line-height:1.6;
+}
+.vp-tagline-text strong{
+  color:#0A84FF;
+  font-weight:600;
+  text-shadow:0 0 14px rgba(10,132,255,.5);
+}
+
+/* ── Hook text (bridge between cards and 97%) ── */
+.vp-hook-text{
+  text-align:center;
+  font-size:20px;
+  line-height:1.6;
+  margin-top:80px;
+  color:rgba(255,255,255,.72);
+  letter-spacing:-.015em;
+  position:relative;
+  z-index:1;
+  padding:0 40px;
+}
+.vp-hook-text strong{
+  display:block;
+  font-size:24px;
+  font-weight:700;
+  margin-top:10px;
+  color:#0A84FF;
+  letter-spacing:-.025em;
+  text-shadow:0 0 18px rgba(10,132,255,.55);
+}
+.vp-hook-text::after{
+  content:'';
+  display:block;
+  margin:24px auto 0;
+  width:120px; height:2px;
+  background:linear-gradient(to right,transparent,rgba(10,132,255,.85),transparent);
+  filter:blur(1px);
+}
+
+/* ─────────────────────────────────────────
+   SECTION CONNECTOR (between ROI → 97%)
+───────────────────────────────────────── */
+@keyframes energyFlow{
+  0%,100%{ opacity:.4; transform:scaleY(.85) }
+  50%    { opacity:1;  transform:scaleY(1)   }
+}
+.section-connector{
+  position:relative;
+  width:100%;
+  height:100px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:transparent;
+  pointer-events:none;
+  overflow:visible;
+}
+/* Core energy beam */
+.section-connector::before{
+  content:'';
+  position:relative;
+  z-index:1;
+  width:2px;
+  height:100%;
+  background:linear-gradient(
+    to bottom,
+    transparent,
+    rgba(10,132,255,.25) 20%,
+    rgba(10,132,255,.9) 50%,
+    rgba(10,132,255,.25) 80%,
+    transparent
+  );
+  filter:blur(1px);
+  animation:energyFlow 3.5s ease-in-out infinite;
+  transform-origin:center;
+}
+/* Wide ambient glow behind the beam */
+.section-connector::after{
+  content:'';
+  position:absolute;
+  width:24px;
+  height:100%;
+  background:radial-gradient(circle,rgba(10,132,255,.22) 0%,transparent 70%);
+  filter:blur(10px);
+  animation:energyFlow 3.5s ease-in-out infinite;
+  transform-origin:center;
 }
 
 /* ─────────────────────────────────────────
@@ -1604,9 +1696,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
   /* Value props */
   .vp-grid          { grid-template-columns:repeat(2,1fr); gap:12px }
-  .vp-header        { margin-bottom:30px }
+  .vp-header        { margin-bottom:36px }
   .vp-card--primary { transform:none }
-  .vp-card--primary:hover { transform:translateY(-6px) scale(1.02) }
+  .vp-card--primary:hover { transform:translateY(-8px) }
+  .section-connector{ height:72px }
 
   /* Features — copy first in HTML, so natural order is correct on mobile */
   .feature-grid, .feature-grid.reverse { grid-template-columns:1fr; direction:ltr; gap:36px }
@@ -1737,17 +1830,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
      VALUE PROPS
   ──────────────── */
   #value-props        { padding:var(--sec-m) 0; overflow:hidden }
-  .vp-header          { margin-bottom:28px; padding:0 20px }
-  .vp-header::after   { display:none }
-  .vp-title           { font-size:clamp(24px,6.5vw,34px) }
+  .vp-header          { margin-bottom:32px; padding:0 20px }
+  .vp-title           { font-size:clamp(24px,6.5vw,36px); line-height:1.04 }
   .vp-sub             { font-size:15px }
-  .vp-grid            { grid-template-columns:1fr; padding:0 20px; gap:11px; padding-top:0; margin-top:24px }
+  .vp-grid            { grid-template-columns:1fr; padding:0 20px; gap:11px; padding-top:0; margin-top:28px }
+  .vp-grid::before    { display:none }
   .vp-card            { padding:24px 20px 22px }
   .vp-card--primary   { transform:none }
-  .vp-card--primary:hover { transform:translateY(-6px) scale(1.02) }
-  .vp-icon            { width:42px; height:42px; min-width:42px; min-height:42px; margin-bottom:16px }
-  .vp-tagline         { padding:0 20px; margin-top:40px }
-  .vp-tagline-text    { font-size:14.5px }
+  .vp-card--primary:hover { transform:translateY(-8px) }
+  .vp-icon            { width:42px; height:42px; min-width:42px; min-height:42px; margin-bottom:16px; box-shadow:0 0 10px rgba(10,132,255,.2) }
+  .vp-tagline         { padding:0 20px; margin-top:44px }
+  .vp-tagline-text    { font-size:15px }
+  .vp-hook-text       { font-size:17px; margin-top:56px; padding:0 20px }
+  .vp-hook-text strong{ font-size:20px }
+  .section-connector  { height:60px }
 
   /* ────────────────
      PROBLEM HOOK
