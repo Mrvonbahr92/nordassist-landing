@@ -297,7 +297,106 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .scroll-cue-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}
 
 /* ─────────────────────────────────────────
-   ② PROBLEM HOOK
+   ② VALUE PROPS (ROI grid)
+───────────────────────────────────────── */
+#value-props{
+  background:#ffffff;
+  padding:96px 0 80px;
+  position:relative;
+}
+#value-props::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.09) 50%,transparent 100%);
+}
+#value-props::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.09) 50%,transparent 100%);
+}
+.vp-header{
+  text-align:center;
+  margin-bottom:52px;
+  padding:0 40px;
+}
+.vp-title{
+  font-size:clamp(26px,3.8vw,42px);
+  font-weight:800;
+  letter-spacing:-.04em;
+  line-height:1.08;
+  color:#0a0a0f;
+  margin-bottom:14px;
+}
+.vp-sub{
+  font-size:16px;
+  color:#6b7280;
+  line-height:1.68;
+  max-width:520px;
+  margin:0 auto;
+  font-weight:400;
+}
+.vp-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 40px;
+}
+.vp-card{
+  background:#ffffff;
+  border:1px solid rgba(0,0,0,.07);
+  border-radius:18px;
+  padding:30px 24px 26px;
+  position:relative;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
+  box-shadow:0 2px 10px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.03);
+}
+.vp-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 48px rgba(34,197,94,.12),0 4px 16px rgba(0,0,0,.05);
+  border-color:rgba(34,197,94,.24);
+}
+.vp-icon{
+  width:44px;height:44px;
+  border-radius:12px;
+  background:#f0fdf4;
+  border:1px solid rgba(34,197,94,.15);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;
+  transition:background .25s var(--ease),box-shadow .25s var(--ease);
+}
+.vp-icon svg{
+  width:20px;height:20px;
+  color:#16a34a;
+}
+.vp-card:hover .vp-icon{
+  background:#dcfce7;
+  box-shadow:0 0 18px rgba(34,197,94,.30);
+}
+.vp-card-title{
+  font-size:15px;
+  font-weight:700;
+  color:#0a0a0f;
+  letter-spacing:-.022em;
+  line-height:1.3;
+  margin-bottom:9px;
+}
+.vp-card-text{
+  font-size:13.5px;
+  color:#6b7280;
+  line-height:1.65;
+}
+.vp-tagline{
+  text-align:center;
+  margin-top:48px;
+  font-size:15px;
+  color:#9ca3af;
+  font-style:italic;
+  letter-spacing:-.01em;
+  padding:0 40px;
+}
+
+/* ─────────────────────────────────────────
+   ③ PROBLEM HOOK
 ───────────────────────────────────────── */
 #hook{
   padding:var(--sec) 0;
@@ -1423,6 +1522,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .nav-links, .nav-login { display:none }
   .hamburger { display:flex }
 
+  /* Value props */
+  .vp-grid { grid-template-columns:repeat(2,1fr); gap:14px }
+
   /* Features — copy first in HTML, so natural order is correct on mobile */
   .feature-grid, .feature-grid.reverse { grid-template-columns:1fr; direction:ltr; gap:36px }
   .feature-visual { order:1; justify-content:flex-start }
@@ -1547,6 +1649,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .hero-proof-item{ font-size:10.5px }
 
   .scroll-cue { display:none }
+
+  /* ────────────────
+     VALUE PROPS
+  ──────────────── */
+  #value-props { padding:60px 0 52px }
+  .vp-header   { margin-bottom:32px; padding:0 20px }
+  .vp-grid     { grid-template-columns:1fr; padding:0 20px; gap:12px }
+  .vp-card     { padding:22px 18px 20px }
+  .vp-tagline  { padding:0 20px; margin-top:28px; font-size:14px }
 
   /* ────────────────
      PROBLEM HOOK
