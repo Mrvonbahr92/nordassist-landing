@@ -32,7 +32,7 @@
   }
 
   /* ── Scroll-reveal ── */
-  var revealEls = document.querySelectorAll('.r, .plan-reveal');
+  var revealEls = document.querySelectorAll('.r, .pricing-v2-reveal');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
