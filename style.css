@@ -161,15 +161,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   /* Crop the large empty canvas padding out of the PNG so the
      actual "Nordassist" text fills the visible area */
   display:block;
-  width:210px;
-  height:46px;
+  width:228px;
+  height:50px;
   object-fit:cover;
   object-position:50% 48%;
-  transition:opacity .25s ease, transform .25s ease;
+  /* Slight brightness lift + soft alpha-channel glow around logo text */
+  filter:brightness(1.08) drop-shadow(0 0 10px rgba(255,255,255,.13));
+  transition:opacity .25s ease, transform .25s ease, filter .25s ease;
 }
 .nav-logo:hover img{
-  opacity:.88;
+  opacity:.92;
   transform:scale(1.02);
+  filter:brightness(1.14) drop-shadow(0 0 14px rgba(255,255,255,.2));
 }
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{font-size:13.5px;font-weight:500;color:var(--text-2);transition:color .18s}
@@ -305,25 +308,41 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   position:relative;
   overflow:hidden;
 }
-/* Layered atmospheric glow — offset blue + subtle indigo */
+/* Soft exit at section bottom — bridges into hook section */
+#value-props::after{
+  content:'';
+  position:absolute;
+  bottom:0; left:0; right:0;
+  height:180px;
+  background:linear-gradient(to bottom,transparent,rgba(10,132,255,.018));
+  pointer-events:none;
+  z-index:0;
+}
+/* Single centred ambient glow — sits behind the card grid */
 #value-props::before{
   content:'';
   position:absolute;
-  top:-200px; left:50%;
-  transform:translateX(-50%);
-  width:1400px; height:900px;
-  background:
-    radial-gradient(ellipse 52% 52% at 36% 44%, rgba(10,132,255,.085) 0%, transparent 70%),
-    radial-gradient(ellipse 42% 42% at 64% 36%, rgba(88,80,220,.055) 0%, transparent 70%);
+  top:38%; left:50%;
+  transform:translate(-50%,-50%);
+  width:860px; height:580px;
+  background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(10,132,255,.062) 0%,transparent 72%);
   pointer-events:none;
   z-index:0;
 }
 .vp-header{
   text-align:center;
-  margin-bottom:64px;
+  margin-bottom:36px;
   padding:0 40px;
   position:relative;
   z-index:1;
+}
+/* Structural divider between header and cards */
+.vp-header::after{
+  content:'';
+  display:block;
+  width:180px; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(10,132,255,.22),transparent);
+  margin:26px auto 0;
 }
 .vp-title{
   font-size:clamp(28px,3.8vw,46px);
@@ -338,7 +357,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .vp-sub{
   font-size:17px;
   color:var(--text-2);
-  line-height:1.65;
+  line-height:1.68;
   max-width:480px;
   margin:0 auto;
   font-weight:400;
@@ -352,56 +371,72 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   padding:0 40px;
   position:relative;
   z-index:1;
+  /* top padding accounts for primary card scale overflow */
+  padding-top:8px;
+  margin-top:32px;
 }
+/* ── Base card ── */
 .vp-card{
-  background:linear-gradient(160deg,rgb(21,23,38) 0%,rgb(14,16,27) 100%);
-  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(160deg,rgb(18,20,33) 0%,rgb(13,15,24) 100%);
+  border:1px solid rgba(255,255,255,.07);
   border-radius:20px;
-  padding:34px 28px 30px;
+  padding:32px 26px 28px;
   position:relative;
   overflow:hidden;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.07),
-    0 8px 32px rgba(0,0,0,.5);
-  transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out),border-color .3s var(--ease-out);
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 4px 20px rgba(0,0,0,.45);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
 }
-/* Diagonal shimmer on hover */
 .vp-card::after{
   content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    135deg,
-    transparent 30%,
-    rgba(255,255,255,.022) 50%,
-    transparent 70%
-  );
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 35%,rgba(255,255,255,.016) 50%,transparent 65%);
   opacity:0;
-  transition:opacity .35s var(--ease);
+  transition:opacity .25s var(--ease);
   pointer-events:none;
 }
 .vp-card:hover::after{ opacity:1 }
 .vp-card:hover{
-  transform:translateY(-7px);
-  border-color:rgba(10,132,255,.30);
+  transform:translateY(-6px) scale(1.02);
+  border-color:rgba(10,132,255,.24);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.10),
-    0 24px 64px rgba(0,0,0,.6),
-    0 0 0 1px rgba(10,132,255,.10),
-    0 0 60px rgba(10,132,255,.07);
+    inset 0 1px 0 rgba(255,255,255,.09),
+    0 18px 48px rgba(0,0,0,.55),
+    0 0 40px rgba(10,132,255,.06);
 }
+/* ── Primary card — dominant focal point ── */
+.vp-card--primary{
+  background:linear-gradient(160deg,rgb(22,25,42) 0%,rgb(16,18,30) 100%);
+  border-color:rgba(255,255,255,.11);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.09),
+    0 8px 36px rgba(0,0,0,.52),
+    0 0 48px rgba(10,132,255,.07);
+  transform:scale(1.04);
+  z-index:2;
+}
+.vp-card--primary:hover{
+  transform:scale(1.04) translateY(-6px);
+  border-color:rgba(10,132,255,.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.11),
+    0 20px 56px rgba(0,0,0,.6),
+    0 0 60px rgba(10,132,255,.10);
+}
+/* ── Icon ── */
 .vp-icon{
-  width:48px;height:48px;
-  min-width:48px;min-height:48px;
-  border-radius:13px;
-  background:rgba(10,132,255,.09);
-  border:1px solid rgba(10,132,255,.20);
+  width:46px;height:46px;
+  min-width:46px;min-height:46px;
+  border-radius:12px;
+  background:rgba(10,132,255,.08);
+  border:1px solid rgba(10,132,255,.18);
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
   overflow:hidden;
-  margin-bottom:22px;
+  margin-bottom:20px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
-  transition:background .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+  transition:background .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
 }
 .vp-icon svg{
   display:block;
@@ -412,12 +447,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   color:var(--blue-2);
 }
 .vp-card:hover .vp-icon{
-  background:rgba(10,132,255,.16);
-  border-color:rgba(10,132,255,.34);
+  background:rgba(10,132,255,.13);
+  border-color:rgba(10,132,255,.28);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.07),
-    0 0 22px rgba(10,132,255,.38);
+    0 0 16px rgba(10,132,255,.28);
 }
+/* ── Text ── */
 .vp-card-title{
   font-size:15.5px;
   font-weight:700;
@@ -431,27 +467,21 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   color:var(--text-2);
   line-height:1.68;
 }
-/* Tagline — vertical blue connector + statement */
+/* ── Tagline ── clean, no forced decoration */
 .vp-tagline{
   text-align:center;
-  margin-top:68px;
+  margin-top:72px;
   padding:0 40px;
   position:relative;
   z-index:1;
 }
-.vp-tagline::before{
-  content:'';
-  display:block;
-  width:1px; height:44px;
-  background:linear-gradient(to bottom,transparent,rgba(10,132,255,.45),transparent);
-  margin:0 auto 24px;
-}
 .vp-tagline-text{
-  font-size:16px;
-  font-weight:500;
-  color:var(--text-2);
-  letter-spacing:-.015em;
+  font-size:15px;
+  font-weight:400;
+  color:var(--text-3);
+  letter-spacing:-.01em;
   line-height:1.5;
+  opacity:.8;
 }
 
 /* ─────────────────────────────────────────
@@ -1359,7 +1389,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* ── 97% Hook — clean impact ── */
 #hook{
-  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(10,132,255,.045) 0%,transparent 100%),var(--bg);
+  background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(10,132,255,.042) 0%,transparent 100%),var(--bg);
 }
 .hook-stat span{text-shadow:0 0 40px rgba(41,151,255,.28)}
 .hook-label{
@@ -1582,8 +1612,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .hamburger { display:flex }
 
   /* Value props */
-  .vp-grid   { grid-template-columns:repeat(2,1fr); gap:12px }
-  .vp-header { margin-bottom:48px }
+  .vp-grid          { grid-template-columns:repeat(2,1fr); gap:12px }
+  .vp-header        { margin-bottom:30px }
+  .vp-card--primary { transform:none }
+  .vp-card--primary:hover { transform:translateY(-6px) scale(1.02) }
 
   /* Features — copy first in HTML, so natural order is correct on mobile */
   .feature-grid, .feature-grid.reverse { grid-template-columns:1fr; direction:ltr; gap:36px }
@@ -1643,7 +1675,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   ──────────────── */
   #nav         { padding:12px 0 }
   #nav.scrolled{ padding:10px 0; background:rgba(7,8,12,.92) }
-  .nav-logo img{ width:168px; height:37px }
+  .nav-logo img{ width:182px; height:40px }
   .footer-logo-img{ width:136px; height:30px }
   .nav-wrap    { gap:8px }
   .nav-cta     { padding:7px 13px; font-size:12px; gap:4px; letter-spacing:.01em }
@@ -1714,14 +1746,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
      VALUE PROPS
   ──────────────── */
   #value-props        { padding:var(--sec-m) 0; overflow:hidden }
-  .vp-header          { margin-bottom:36px; padding:0 20px }
+  .vp-header          { margin-bottom:28px; padding:0 20px }
+  .vp-header::after   { display:none }
   .vp-title           { font-size:clamp(24px,6.5vw,34px) }
   .vp-sub             { font-size:15px }
-  .vp-grid            { grid-template-columns:1fr; padding:0 20px; gap:11px }
+  .vp-grid            { grid-template-columns:1fr; padding:0 20px; gap:11px; padding-top:0; margin-top:24px }
   .vp-card            { padding:24px 20px 22px }
+  .vp-card--primary   { transform:none }
+  .vp-card--primary:hover { transform:translateY(-6px) scale(1.02) }
   .vp-icon            { width:42px; height:42px; min-width:42px; min-height:42px; margin-bottom:16px }
   .vp-tagline         { padding:0 20px; margin-top:40px }
-  .vp-tagline::before { height:30px; margin-bottom:16px }
   .vp-tagline-text    { font-size:14.5px }
 
   /* ────────────────
