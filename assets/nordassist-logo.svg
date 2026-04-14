@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 32" fill="none">
+  <!--
+    Nordassist — SVG wordmark
+    Mark: north-star spark (vertical = nord / primary, diagonals = secondary)
+    Type: Inter 600, -0.5 tracking, pure white
+  -->
+
+  <!-- Spark mark -->
+  <g transform="translate(12 16)">
+    <!-- Vertical — primary stroke, north emphasis -->
+    <line x1="0" y1="-11.5" x2="0" y2="9.5"
+          stroke="#0A84FF" stroke-width="2" stroke-linecap="round"/>
+    <!-- Diagonal NW–SE — secondary -->
+    <line x1="-8.2" y1="-4.7" x2="8.2" y2="4.7"
+          stroke="#0A84FF" stroke-width="1.75" stroke-linecap="round" opacity="0.48"/>
+    <!-- Diagonal SW–NE — secondary -->
+    <line x1="-8.2" y1="4.7" x2="8.2" y2="-4.7"
+          stroke="#0A84FF" stroke-width="1.75" stroke-linecap="round" opacity="0.48"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text
+    x="32" y="22"
+    font-family="Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif"
+    font-size="17" font-weight="600" letter-spacing="-0.3"
+    fill="#FFFFFF">Nordassist</text>
+</svg>

@@ -158,21 +158,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   text-decoration:none;
 }
 .nav-logo img{
-  /* Crop the large empty canvas padding out of the PNG so the
-     actual "Nordassist" text fills the visible area */
   display:block;
-  width:228px;
-  height:50px;
-  object-fit:cover;
-  object-position:50% 48%;
-  /* Slight brightness lift + soft alpha-channel glow around logo text */
-  filter:brightness(1.08) drop-shadow(0 0 10px rgba(255,255,255,.13));
-  transition:opacity .25s ease, transform .25s ease, filter .25s ease;
+  height:32px;
+  width:auto;
+  transition:transform .18s cubic-bezier(.4,0,.2,1), filter .2s ease;
 }
 .nav-logo:hover img{
-  opacity:.92;
-  transform:scale(1.02);
-  filter:brightness(1.14) drop-shadow(0 0 14px rgba(255,255,255,.2));
+  transform:scale(1.015);
+  filter:drop-shadow(0 0 4px rgba(10,132,255,.08));
 }
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{font-size:13.5px;font-weight:500;color:var(--text-2);transition:color .18s}
@@ -1288,11 +1281,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 .footer-logo-img{
   display:block;
-  width:168px;
-  height:37px;
-  object-fit:cover;
-  object-position:50% 48%;
-  opacity:.82;
+  height:26px;
+  width:auto;
+  opacity:.72;
   transition:opacity .25s ease, transform .25s ease;
 }
 .footer-logo:hover .footer-logo-img{
@@ -1675,12 +1666,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   ──────────────── */
   #nav         { padding:12px 0 }
   #nav.scrolled{ padding:10px 0; background:rgba(7,8,12,.92) }
-  .nav-logo img{ width:182px; height:40px }
-  .footer-logo-img{ width:136px; height:30px }
+  .nav-logo img{ height:27px; width:auto }
+  .footer-logo-img{ height:22px; width:auto }
   .nav-wrap    { gap:8px }
   .nav-cta     { padding:7px 13px; font-size:12px; gap:4px; letter-spacing:.01em }
   .hamburger   { padding:2px 4px }
-  .footer-logo-img{ width:136px; height:30px }
+  .footer-logo-img{ height:22px; width:auto }
 
   /* ────────────────
      HERO
