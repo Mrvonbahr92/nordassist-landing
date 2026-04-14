@@ -15,6 +15,19 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
+/* Global ambient blue flow — fixed, unified canvas glow */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 8%,  rgba(10,132,255,.07)  0%,transparent 100%),
+    radial-gradient(ellipse 35% 45% at 50% 52%,  rgba(10,132,255,.038) 0%,transparent 100%),
+    radial-gradient(ellipse 20% 30% at 15% 75%,  rgba(10,132,255,.018) 0%,transparent 100%),
+    radial-gradient(ellipse 20% 30% at 85% 75%,  rgba(10,132,255,.018) 0%,transparent 100%);
+}
 img,video{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
@@ -34,9 +47,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   --blue-dim:    rgba(10,132,255,0.10);
   --blue-glow:   rgba(10,132,255,0.22);
   --blue-border: rgba(10,132,255,0.28);
-  --text:        #F5F5F7;
-  --text-2:      #8E8E93;
-  --text-3:      #545458;
+  --text:        #F8F8FA;
+  --text-2:      #A0A0A8;
+  --text-3:      #5E5E64;
   --green:       #30D158;
   --orange:      #FF9F0A;
   --r:           12px;
@@ -76,18 +89,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
 .display{
-  font-size:clamp(52px,7vw,96px);
-  font-weight:800;letter-spacing:-.04em;line-height:1.01;color:var(--text);
+  font-size:clamp(56px,7.5vw,104px);
+  font-weight:800;letter-spacing:-.045em;line-height:1.0;color:var(--text);
 }
 .display em{font-style:normal;color:var(--blue-2)}
 
 .h2{
-  font-size:clamp(36px,4.5vw,64px);
-  font-weight:700;letter-spacing:-.03em;line-height:1.08;color:var(--text);
+  font-size:clamp(38px,4.8vw,68px);
+  font-weight:800;letter-spacing:-.033em;line-height:1.06;color:var(--text);
 }
-.h3{font-size:clamp(22px,2.5vw,32px);font-weight:700;letter-spacing:-.025em;color:var(--text);line-height:1.2}
+.h3{font-size:clamp(23px,2.6vw,34px);font-weight:700;letter-spacing:-.028em;color:var(--text);line-height:1.18}
 
-.lead{font-size:clamp(17px,1.8vw,21px);line-height:1.65;color:var(--text-2);font-weight:400}
+.lead{font-size:clamp(17px,1.9vw,21px);line-height:1.65;color:var(--text-2);font-weight:400}
 .body{font-size:16px;line-height:1.75;color:var(--text-2)}
 
 /* ─────────────────────────────────────────
@@ -228,13 +241,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .hero-badge-icon{font-size:13px;opacity:.8}
 
 .hero-title{
-  font-size:clamp(54px,7.5vw,100px);
-  font-weight:800;letter-spacing:-.045em;line-height:.98;
-  color:var(--text);margin-bottom:24px;
+  font-size:clamp(58px,8vw,108px);
+  font-weight:800;letter-spacing:-.048em;line-height:.97;
+  color:var(--text);margin-bottom:28px;
 }
 
 .hero-sub{
-  font-size:clamp(16px,1.8vw,19px);line-height:1.65;color:var(--text-2);
+  font-size:clamp(17px,1.9vw,20px);line-height:1.65;color:var(--text-2);
   max-width:560px;margin:0 auto 40px;font-weight:400;
 }
 
@@ -336,17 +349,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   animation:vp-dot-pulse 2.5s ease-in-out infinite;
 }
 .vp-title{
-  font-size:clamp(28px,4vw,50px);
+  font-size:clamp(30px,4.2vw,54px);
   font-weight:800;
-  letter-spacing:-.042em;
-  line-height:1.02;
+  letter-spacing:-.044em;
+  line-height:1.01;
   color:var(--text);
   margin-bottom:20px;
   max-width:760px;
   margin-left:auto;margin-right:auto;
 }
 .vp-sub{
-  font-size:17px;
+  font-size:17.5px;
   color:var(--text-2);
   line-height:1.68;
   max-width:480px;
@@ -377,67 +390,70 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* ── Base card ── */
 .vp-card{
   background:linear-gradient(160deg,#111827 0%,#090f1c 100%);
-  border:1px solid rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.07);
   border-radius:18px;
   padding:34px 28px 30px;
   position:relative;
   overflow:hidden;
   z-index:1;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.05),
-    0 10px 40px rgba(0,0,0,.6);
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 12px 48px rgba(0,0,0,.7),
+    0 0 0 1px rgba(0,0,0,.4);
   transition:transform .35s var(--ease-out),box-shadow .35s var(--ease-out),border-color .35s var(--ease-out);
 }
 .vp-card::after{
   content:'';
   position:absolute;inset:0;
-  background:linear-gradient(135deg,transparent 35%,rgba(255,255,255,.016) 50%,transparent 65%);
+  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.022) 50%,transparent 70%);
   opacity:0;
   transition:opacity .3s var(--ease);
   pointer-events:none;
 }
 .vp-card:hover::after{ opacity:1 }
 .vp-card:hover{
-  transform:translateY(-10px);
-  border-color:rgba(10,132,255,.2);
+  transform:translateY(-8px);
+  border-color:rgba(10,132,255,.25);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.08),
-    0 25px 60px rgba(0,0,0,.8),
-    0 0 25px rgba(10,132,255,.15);
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 28px 72px rgba(0,0,0,.85),
+    0 0 32px rgba(10,132,255,.20),
+    0 0 0 1px rgba(10,132,255,.08);
 }
 /* ── Primary card ── */
 .vp-card--primary{
   background:linear-gradient(160deg,#141b2e 0%,#0d1422 100%);
-  border-color:rgba(255,255,255,.10);
+  border-color:rgba(10,132,255,.18);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.08),
-    0 12px 40px rgba(0,0,0,.6),
-    0 0 40px rgba(10,132,255,.08);
+    inset 0 1px 0 rgba(255,255,255,.09),
+    0 14px 48px rgba(0,0,0,.65),
+    0 0 48px rgba(10,132,255,.11);
   transform:scale(1.04);
   z-index:2;
 }
 .vp-card--primary:hover{
-  transform:scale(1.04) translateY(-10px);
-  border-color:rgba(10,132,255,.28);
+  transform:scale(1.04) translateY(-8px);
+  border-color:rgba(10,132,255,.35);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.11),
-    0 28px 64px rgba(0,0,0,.85),
-    0 0 40px rgba(10,132,255,.18);
+    inset 0 1px 0 rgba(255,255,255,.13),
+    0 30px 70px rgba(0,0,0,.88),
+    0 0 52px rgba(10,132,255,.24),
+    0 0 0 1px rgba(10,132,255,.12);
 }
 /* ── Icon ── */
 .vp-icon{
   width:46px;height:46px;
   min-width:46px;min-height:46px;
   border-radius:12px;
-  background:rgba(10,132,255,.08);
-  border:1px solid rgba(10,132,255,.18);
+  background:rgba(10,132,255,.10);
+  border:1px solid rgba(10,132,255,.22);
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
   overflow:hidden;
   margin-bottom:20px;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.06),
-    0 0 15px rgba(10,132,255,.25);
+    inset 0 1px 0 rgba(255,255,255,.07),
+    0 0 20px rgba(10,132,255,.32);
   transition:background .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
 }
 .vp-icon svg{
@@ -447,13 +463,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   max-width:20px;max-height:20px;
   flex-shrink:0;
   color:var(--blue-2);
+  filter:drop-shadow(0 0 4px rgba(10,132,255,.5));
+  transition:filter .25s var(--ease);
 }
 .vp-card:hover .vp-icon{
-  background:rgba(10,132,255,.14);
-  border-color:rgba(10,132,255,.32);
+  background:rgba(10,132,255,.18);
+  border-color:rgba(10,132,255,.42);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.08),
-    0 0 22px rgba(10,132,255,.38);
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 0 28px rgba(10,132,255,.52);
+}
+.vp-card:hover .vp-icon svg{
+  filter:drop-shadow(0 0 8px rgba(10,132,255,.8));
 }
 /* ── Text ── */
 .vp-card-title{
@@ -521,16 +542,24 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 
 /* ─────────────────────────────────────────
-   SECTION CONNECTOR (between ROI → 97%)
+   SECTION CONNECTOR — energy beam system
 ───────────────────────────────────────── */
 @keyframes energyFlow{
-  0%,100%{ opacity:.4; transform:scaleY(.85) }
-  50%    { opacity:1;  transform:scaleY(1)   }
+  0%,100%{ opacity:.48; transform:scaleY(.9)  }
+  50%    { opacity:1;   transform:scaleY(1)   }
+}
+@keyframes energyGlow{
+  0%,100%{ opacity:.35; transform:scaleY(.9)  }
+  50%    { opacity:.85; transform:scaleY(1)   }
+}
+@keyframes energyHalo{
+  0%,100%{ opacity:.15; transform:scaleX(.7)  }
+  50%    { opacity:.38; transform:scaleX(1)   }
 }
 .section-connector{
   position:relative;
   width:100%;
-  height:100px;
+  height:120px;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -538,34 +567,36 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   pointer-events:none;
   overflow:visible;
 }
-/* Core energy beam */
+/* Core energy beam — sharp, bright centre */
 .section-connector::before{
   content:'';
   position:relative;
-  z-index:1;
+  z-index:2;
   width:2px;
   height:100%;
   background:linear-gradient(
     to bottom,
     transparent,
-    rgba(10,132,255,.25) 20%,
-    rgba(10,132,255,.9) 50%,
-    rgba(10,132,255,.25) 80%,
+    rgba(10,132,255,.45) 12%,
+    rgba(80,170,255,1)   48%,
+    rgba(10,132,255,.8)  52%,
+    rgba(10,132,255,.45) 88%,
     transparent
   );
-  filter:blur(1px);
-  animation:energyFlow 3.5s ease-in-out infinite;
+  filter:blur(0.6px);
+  animation:energyFlow 3.2s ease-in-out infinite;
   transform-origin:center;
 }
-/* Wide ambient glow behind the beam */
+/* Wide ambient halo — broader, softer */
 .section-connector::after{
   content:'';
   position:absolute;
-  width:24px;
+  width:60px;
   height:100%;
-  background:radial-gradient(circle,rgba(10,132,255,.22) 0%,transparent 70%);
-  filter:blur(10px);
-  animation:energyFlow 3.5s ease-in-out infinite;
+  background:radial-gradient(ellipse at center,rgba(10,132,255,.38) 0%,rgba(10,132,255,.12) 35%,transparent 70%);
+  filter:blur(18px);
+  animation:energyGlow 3.2s ease-in-out infinite;
+  animation-delay:.25s;
   transform-origin:center;
 }
 
@@ -578,8 +609,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   text-align:center;
 }
 .hook-stat{
-  font-size:clamp(80px,12vw,160px);
-  font-weight:800;letter-spacing:-.06em;line-height:1;
+  font-size:clamp(90px,13vw,180px);
+  font-weight:800;letter-spacing:-.065em;line-height:1;
   color:var(--text);margin-bottom:16px;
 }
 .hook-stat span{color:var(--blue-2)}
@@ -647,8 +678,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   padding:var(--sec) 0;
   overflow:hidden;
 }
-.feature-section:nth-child(even){background:var(--bg-raise)}
-.feature-section:nth-child(odd){background:var(--bg)}
+/* All feature sections share the same base — connectors bridge them */
+.feature-section{background:var(--bg)}
 
 .feature-grid{
   display:grid;grid-template-columns:1fr 1fr;
@@ -811,8 +842,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 #results{
   padding:var(--sec) 0;
   background:var(--bg);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
 }
 .results-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
@@ -843,7 +872,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 ───────────────────────────────────────── */
 #how{
   padding:var(--sec) 0;
-  background:var(--bg-raise);
+  background:var(--bg);
 }
 /* .how-steps, .how-step, etc. → moved to premium redesign block above */
 
@@ -1181,7 +1210,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 ───────────────────────────────────────── */
 #cta{
   padding:80px 0 88px;
-  background:var(--bg-raise);
+  background:
+    radial-gradient(ellipse 40% 22% at 50% 0%, rgba(10,132,255,.065) 0%,transparent 100%),
+    var(--bg);
   text-align:center;position:relative;overflow:hidden;
 }
 .cta-orb{
@@ -1211,7 +1242,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 #footer{
   padding:72px 0 40px;
   background:var(--bg);
-  border-top:1px solid var(--border);
 }
 .footer-top{display:grid;grid-template-columns:200px 1fr;gap:80px;margin-bottom:64px}
 .footer-brand-name{font-size:15px;font-weight:800;letter-spacing:.04em;color:var(--text);margin-bottom:12px}
@@ -1455,10 +1485,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 #hook,#dashboard,.feature-section,#results,#how,#compare,#pricing,#faq,#cta{
   position:relative;
 }
-#how::before,#pricing::before,#compare::before,#faq::before,#results::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;pointer-events:none;
-  background:linear-gradient(90deg,transparent 0%,var(--border-hi) 50%,transparent 100%);
-}
+/* Section separator lines removed — connectors handle transitions */
 
 /* ── Typography — final rhythm ── */
 .body{font-size:16px;line-height:1.7;color:var(--text-2)}
@@ -1470,21 +1497,97 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .dash-label-row .lead,
 .feature-copy .body{ margin-bottom:0 }
 
-/* ── 97% Hook — clean impact ── */
+/* ── 97% Hook — focal energy node ── */
 #hook{
-  background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(10,132,255,.042) 0%,transparent 100%),var(--bg);
+  /* Top bloom: connector energy feeds the section from above */
+  background:
+    radial-gradient(ellipse 44% 26% at 50% 0%,   rgba(10,132,255,.10) 0%,transparent 100%),
+    radial-gradient(ellipse 85% 60% at 50% 30%,  rgba(10,132,255,.058) 0%,transparent 100%),
+    var(--bg);
 }
-.hook-stat span{text-shadow:0 0 40px rgba(41,151,255,.28)}
+/* 97 number — maximum energy concentration */
+.hook-stat span:first-child{
+  text-shadow:
+    0 0 30px rgba(10,132,255,.75),
+    0 0 80px rgba(10,132,255,.38),
+    0 0 160px rgba(10,132,255,.18);
+}
+@keyframes hookStatPulse{
+  0%,100%{ text-shadow:0 0 30px rgba(10,132,255,.75),0 0 80px rgba(10,132,255,.38),0 0 160px rgba(10,132,255,.18) }
+  50%    { text-shadow:0 0 40px rgba(10,132,255,.95),0 0 110px rgba(10,132,255,.55),0 0 200px rgba(10,132,255,.28) }
+}
+.hook-stat span:first-child{ animation:hookStatPulse 4s ease-in-out infinite }
+.hook-stat span{color:var(--blue-2)}
 .hook-label{
   font-size:clamp(19px,2.4vw,27px);
-  color:var(--text-2);
+  color:rgba(255,255,255,.72);
   line-height:1.45;
   letter-spacing:-.015em;
 }
+/* Divider between stat and copy — feels like the beam continues down */
 .hook-divider{
-  width:1px;height:72px;
-  background:linear-gradient(to bottom,transparent,rgba(10,132,255,.35),transparent);
+  width:1.5px;height:72px;
+  background:linear-gradient(to bottom,rgba(10,132,255,.7),rgba(10,132,255,.25),transparent);
   margin:48px auto;
+  filter:blur(0.5px);
+  box-shadow:0 0 8px rgba(10,132,255,.35);
+}
+/* NordAssist CTA line — glowing blue call-to-action */
+.hook-cta-line{
+  font-size:18px!important;
+  color:var(--blue-2)!important;
+  font-weight:700!important;
+  letter-spacing:-.02em!important;
+  text-shadow:
+    0 0 20px rgba(10,132,255,.8),
+    0 0 50px rgba(10,132,255,.35);
+  animation:hookStatPulse 4s ease-in-out infinite;
+  animation-delay:0.5s;
+  display:inline-block;
+}
+
+/* ── Section top-blooms — connector energy enters from above ── */
+/* Dashboard */
+#dashboard{
+  background:
+    radial-gradient(ellipse 40% 22% at 50% 0%, rgba(10,132,255,.075) 0%,transparent 100%),
+    var(--bg);
+}
+/* Feature sections: shared top bloom */
+.feature-section{
+  background:
+    radial-gradient(ellipse 40% 22% at 50% 0%, rgba(10,132,255,.058) 0%,transparent 100%),
+    var(--bg);
+}
+/* How it works */
+#how{
+  background:
+    radial-gradient(ellipse 40% 22% at 50% 0%, rgba(10,132,255,.068) 0%,transparent 100%),
+    var(--bg);
+}
+/* Compare */
+#compare{
+  background:
+    radial-gradient(ellipse 40% 22% at 50% 0%, rgba(10,132,255,.062) 0%,transparent 100%),
+    var(--bg);
+}
+/* Pricing */
+.pricing-v2-section{
+  background:
+    radial-gradient(ellipse 40% 22% at 50% 0%, rgba(10,132,255,.068) 0%,transparent 100%),
+    var(--bg);
+}
+/* FAQ */
+#faq{
+  background:
+    radial-gradient(ellipse 40% 22% at 50% 0%, rgba(10,132,255,.055) 0%,transparent 100%),
+    var(--bg);
+}
+/* CTA */
+#cta{
+  background:
+    radial-gradient(ellipse 40% 22% at 50% 0%, rgba(10,132,255,.072) 0%,transparent 100%),
+    var(--bg);
 }
 
 /* ── Dashboard — product depth ── */
@@ -1596,9 +1699,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   box-shadow:0 48px 120px rgba(0,0,0,.7),0 0 0 1px rgba(10,132,255,.1);
 }
 
-/* ── Feature sections — consistent flat backgrounds ── */
-.feature-section:nth-child(even){background:var(--bg-raise)}
-.feature-section:nth-child(odd){background:var(--bg)}
+/* ── Feature sections — unified background for seamless flow ── */
+.feature-section{background:var(--bg)}
 
 /* ── How-it-works ── */
 .how-step-inner{
