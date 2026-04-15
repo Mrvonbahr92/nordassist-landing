@@ -304,7 +304,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   background:var(--bg);
   padding:var(--sec) 0 calc(var(--sec) + 24px);
   position:relative;
-  overflow:hidden;
 }
 .vp-header{
   text-align:center;
@@ -513,12 +512,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
    SECTION CONNECTOR — energy beam system
 ───────────────────────────────────────── */
 @keyframes energyFlow{
-  0%,100%{ opacity:.42; transform:scaleY(.92) }
-  50%    { opacity:.95; transform:scaleY(1)   }
-}
-@keyframes energyGlow{
-  0%,100%{ opacity:.18; }
-  50%    { opacity:.45; }
+  0%,100%{
+    opacity:.45;
+    box-shadow:0 0 4px 1px rgba(10,132,255,.25);
+  }
+  50%{
+    opacity:1;
+    box-shadow:0 0 8px 3px rgba(10,132,255,.5);
+  }
 }
 .section-connector{
   position:relative;
@@ -529,39 +530,26 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   align-items:center;
   background:transparent;
   pointer-events:none;
-  overflow:hidden;
+  /* no overflow:hidden — no stacking context */
 }
-/* Core beam — crisp 1.5px line, gradient fade in/out */
+/* The line only — glow via box-shadow, no separate pseudo-element */
 .section-connector::before{
   content:'';
   position:relative;
-  z-index:2;
-  width:1.5px;
+  width:1px;
   height:100%;
   background:linear-gradient(
     to bottom,
     transparent,
-    rgba(10,132,255,.5)  18%,
-    rgba(100,180,255,.95) 50%,
-    rgba(10,132,255,.5)  82%,
+    rgba(10,132,255,.55) 20%,
+    rgba(130,190,255,1)  50%,
+    rgba(10,132,255,.55) 80%,
     transparent
   );
-  filter:blur(0.4px);
   animation:energyFlow 3.4s ease-in-out infinite;
   transform-origin:center;
 }
-/* Tight local halo — max 24px, not a band */
-.section-connector::after{
-  content:'';
-  position:absolute;
-  width:24px;
-  height:80%;
-  background:radial-gradient(ellipse at center,rgba(10,132,255,.22) 0%,transparent 100%);
-  filter:blur(10px);
-  animation:energyGlow 3.4s ease-in-out infinite;
-  animation-delay:.2s;
-  transform-origin:center;
-}
+/* ::after removed — it was creating the full-width dark band */
 
 /* ─────────────────────────────────────────
    ③ PROBLEM HOOK
@@ -632,7 +620,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 ───────────────────────────────────────── */
 .feature-section{
   padding:var(--sec) 0;
-  overflow:hidden;
 }
 /* All feature sections share the same base — connectors bridge them */
 .feature-section{background:var(--bg)}
@@ -1161,7 +1148,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 #cta{
   padding:80px 0 88px;
   background:var(--bg);
-  text-align:center;position:relative;overflow:hidden;
+  text-align:center;position:relative;
 }
 .cta-orb{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
