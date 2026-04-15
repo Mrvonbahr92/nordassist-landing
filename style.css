@@ -6,7 +6,10 @@
    RESET & BASE
 ───────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:68px}
+html{
+  scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:68px;
+  background:#07080c;
+}
 body{
   font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   background:#07080c;
@@ -14,6 +17,12 @@ body{
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+}
+/* Uniform canvas — every section sits on the same base */
+section,main,#hero,#value-props,#hook,#dashboard,
+.feature-section,#results,#how,#compare,
+.pricing-v2-section,#pricing,#faq,#cta,#footer{
+  background:#07080c;
 }
 /* No global overlay — pure canvas */
 img,video{max-width:100%;display:block}
@@ -511,45 +520,29 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* ─────────────────────────────────────────
    SECTION CONNECTOR — energy beam system
 ───────────────────────────────────────── */
-@keyframes energyFlow{
-  0%,100%{
-    opacity:.45;
-    box-shadow:0 0 4px 1px rgba(10,132,255,.25);
-  }
-  50%{
-    opacity:1;
-    box-shadow:0 0 8px 3px rgba(10,132,255,.5);
-  }
+/* ─────────────────────────────────────────
+   SECTION CONNECTOR — minimal line
+───────────────────────────────────────── */
+@keyframes connectorPulse{
+  0%,100%{ opacity:.45 }
+  50%    { opacity:1   }
 }
 .section-connector{
-  position:relative;
   width:100%;
   height:100px;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:transparent;
   pointer-events:none;
-  /* no overflow:hidden — no stacking context */
 }
-/* The line only — glow via box-shadow, no separate pseudo-element */
 .section-connector::before{
   content:'';
-  position:relative;
-  width:1px;
+  width:2px;
   height:100%;
-  background:linear-gradient(
-    to bottom,
-    transparent,
-    rgba(10,132,255,.55) 20%,
-    rgba(130,190,255,1)  50%,
-    rgba(10,132,255,.55) 80%,
-    transparent
-  );
-  animation:energyFlow 3.4s ease-in-out infinite;
-  transform-origin:center;
+  background:linear-gradient(to bottom,transparent,#0A84FF 50%,transparent);
+  box-shadow:0 0 10px rgba(10,132,255,.35);
+  animation:connectorPulse 3s ease-in-out infinite;
 }
-/* ::after removed — it was creating the full-width dark band */
 
 /* ─────────────────────────────────────────
    ③ PROBLEM HOOK
@@ -1689,7 +1682,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .vp-header        { margin-bottom:36px }
   .vp-card--primary { transform:none }
   .vp-card--primary:hover { transform:translateY(-8px) }
-  .section-connector{ height:72px }
+  .section-connector{ height:72px; background:transparent }
 
   /* Features — copy first in HTML, so natural order is correct on mobile */
   .feature-grid, .feature-grid.reverse { grid-template-columns:1fr; direction:ltr; gap:36px }
@@ -1833,7 +1826,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .vp-tagline-text    { font-size:15px }
   .vp-hook-text       { font-size:17px; margin-top:56px; padding:0 20px }
   .vp-hook-text strong{ font-size:20px }
-  .section-connector  { height:60px }
+  .section-connector  { height:60px; background:transparent }
 
   /* ────────────────
      PROBLEM HOOK
