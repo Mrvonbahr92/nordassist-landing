@@ -160,6 +160,50 @@
     observer.observe(mock);
   });
 
+  /* ── Auth-aware CTAs: swap /signup links to /dashboard for logged-in users ── */
+  fetch('https://app.getnordassist.com/api/auth/me', { credentials: 'include' })
+    .then(function (res) {
+      if (!res.ok) return; // Not logged in — keep everything as-is
+
+      var DASHBOARD = 'https://app.getnordassist.com/dashboard';
+      var ARROW_SVG =
+        '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
+        '<path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"' +
+        ' stroke="currentColor" stroke-width="1.6"' +
+        ' stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+      // Rewrite every /signup link
+      document.querySelectorAll('a[href*="/signup"]').forEach(function (a) {
+        a.href = DASHBOARD;
+        if (a.classList.contains('btn-primary')) {
+          a.innerHTML = 'Gå till dashboard ' + ARROW_SVG;
+        } else if (a.closest('.footer-col')) {
+          a.textContent = 'Dashboard';
+        } else {
+          a.textContent = 'Gå till dashboard';
+        }
+      });
+
+      // Hide the "Se live demo" hero button — not needed for logged-in users
+      var demoBtn = document.querySelector('.hero-actions .btn-demo');
+      if (demoBtn) demoBtn.style.display = 'none';
+
+      // Nav CTA → dashboard
+      var navCta = document.querySelector('.nav-cta');
+      if (navCta) {
+        navCta.href      = DASHBOARD;
+        navCta.innerHTML = 'Dashboard ' + ARROW_SVG;
+      }
+
+      // Mobile menu login link → dashboard
+      var mobLogin = document.querySelector('.mob-menu .btn-primary');
+      if (mobLogin) {
+        mobLogin.href      = DASHBOARD;
+        mobLogin.textContent = 'Gå till dashboard →';
+      }
+    })
+    .catch(function () { /* Network error — degrade gracefully, keep default buttons */ });
+
   /* ── FAQ accordion ── */
   document.querySelectorAll('.faq-q').forEach(function (btn) {
     btn.addEventListener('click', function () {
