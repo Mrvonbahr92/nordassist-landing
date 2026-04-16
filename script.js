@@ -47,18 +47,24 @@
     revealEls.forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* ── Sticky mobile CTA: show after hero CTA leaves viewport ── */
-  var stickyCta   = document.getElementById('stickyCta');
-  var heroActions = document.querySelector('.hero-actions');
-  if (stickyCta && heroActions && window.innerWidth <= 600) {
-    var stickyObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        stickyCta.style.transform = e.isIntersecting ? 'translateY(100%)' : 'translateY(0)';
-      });
-    }, { threshold: 0 });
-    stickyObs.observe(heroActions);
+  /* ── Sticky mobile CTA: show after 22% of page scrolled ── */
+  var stickyCta = document.getElementById('stickyCta');
+  if (stickyCta && window.innerWidth <= 600) {
+    var stickyVisible = false;
     stickyCta.style.transition = 'transform .3s cubic-bezier(.22,.68,0,1.2)';
     stickyCta.style.transform  = 'translateY(100%)';
+
+    function updateStickyCta() {
+      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      var pct        = scrollable > 0 ? window.scrollY / scrollable : 0;
+      var shouldShow = pct > 0.22;
+      if (shouldShow !== stickyVisible) {
+        stickyVisible = shouldShow;
+        stickyCta.style.transform = shouldShow ? 'translateY(0)' : 'translateY(100%)';
+      }
+    }
+
+    window.addEventListener('scroll', updateStickyCta, { passive: true });
   }
 
   /* ── Dashboard lightbox ── */
