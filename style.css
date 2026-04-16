@@ -1778,43 +1778,48 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     font-size:16px;
     line-height:1.58;
     max-width:100%;
-    margin:0 auto 24px;
+    margin:0 auto 36px;
   }
   .hero-video-wrap {
-    width: min(248px, 70vw);
-    height:min(248px, 70vw);
-    margin:14px auto 18px;
+    width: min(224px, 63vw);
+    height:min(224px, 63vw);
+    margin:16px auto 44px;
   }
   .hero-video-wrap::before { inset:-8% }
 
   .hero-actions {
     flex-direction:column;
-    align-items:stretch;
+    align-items:center;
     gap:10px;
+    width:92%;
+    margin-left:auto;
+    margin-right:auto;
   }
   .hero-actions .btn {
+    width:100%;
     text-align:center;
     justify-content:center;
-    padding:15px 24px;
+    padding:13px 24px;
     font-size:15px;
     font-weight:600;
     letter-spacing:-.02em;
-    border-radius:13px;
+    border-radius:50px;
   }
   .hero-actions .btn-primary {
-    box-shadow:0 2px 18px rgba(10,132,255,.28),inset 0 1px 0 rgba(255,255,255,.14);
+    box-shadow:0 6px 28px rgba(10,132,255,.32),0 1px 0 rgba(255,255,255,.1) inset;
   }
   .hero-actions .btn-demo {
-    background:rgba(255,255,255,.07) !important;
-    border:1px solid rgba(255,255,255,.15) !important;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.08) !important;
+    background:transparent !important;
+    border:1px solid rgba(255,255,255,.1) !important;
+    box-shadow:none !important;
   }
   .hero-proof {
-    margin-top:20px;
+    margin-top:28px;
     flex-direction:row;
     flex-wrap:wrap;
     gap:8px 14px;
     justify-content:center;
+    opacity:.6;
   }
   .hero-proof-sep { display:none }
   .hero-proof-item{ font-size:10.5px }
