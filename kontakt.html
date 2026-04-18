@@ -36,12 +36,12 @@
     .contact-section {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 0 40px 96px;
+      padding: 0 40px 120px;
     }
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 28px;
     }
 
     /* ── Contact card ── */
@@ -49,7 +49,7 @@
       background: linear-gradient(145deg, rgba(255,255,255,0.058) 0%, rgba(255,255,255,0.022) 100%);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 22px;
-      padding: 36px 30px;
+      padding: 40px 32px;
       display: flex;
       flex-direction: column;
       gap: 0;
@@ -124,10 +124,24 @@
     .contact-card-desc {
       font-size: 14px;
       color: var(--text-3);
-      line-height: 1.68;
+      line-height: 1.82;
       flex: 1;
       margin-bottom: 0;
     }
+
+    .hero-sub {
+      font-size: 13px;
+      color: var(--text-3);
+      margin-top: 14px;
+      letter-spacing: .01em;
+    }
+
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .fi{opacity:0;animation:fadeInUp .7s ease forwards}
+    .fi-1{animation-delay:.05s}
+    .fi-2{animation-delay:.18s}
+    .fi-3{animation-delay:.3s}
+    .fi-4{animation-delay:.42s}
 
     /* ── Card action ── */
     .contact-card-action {
@@ -252,9 +266,10 @@
 <!-- ── Hero ── -->
 <section class="page-hero">
   <div class="w-xs">
-    <div class="eyebrow">Kontakt</div>
-    <h1 class="h1">Vi finns här för dig.</h1>
-    <p class="lead">Välj det sätt som passar dig bäst — vi svarar snabbt oavsett kanal.</p>
+    <div class="eyebrow fi fi-1">Kontakt</div>
+    <h1 class="h1 fi fi-2">Kontakta oss</h1>
+    <p class="lead fi fi-3">Vi svarar snabbt. Oavsett hur du hör av dig.</p>
+    <p class="hero-sub fi fi-4">De flesta får svar inom några minuter.</p>
   </div>
 </section>
 
@@ -271,7 +286,7 @@
         </svg>
       </div>
       <div class="contact-card-title">E-post</div>
-      <div class="contact-card-desc">Har du frågor eller vill komma igång snabbt?</div>
+      <div class="contact-card-desc">Frågor eller redo att komma igång?<br>Skriv till oss så svarar vi snabbt.</div>
       <a href="mailto:hej@nordassist.ai" class="contact-card-action">
         hej@nordassist.ai
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -291,7 +306,7 @@
         </svg>
       </div>
       <div class="contact-card-title">Live support</div>
-      <div class="contact-card-desc">Logga in och få hjälp direkt i chatten.</div>
+      <div class="contact-card-desc">Redan kund?<br>Få hjälp direkt i chatten.</div>
       <a href="https://app.getnordassist.com/login" class="contact-card-action">
         Öppna dashboard
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -312,7 +327,7 @@
         </svg>
       </div>
       <div class="contact-card-title">Boka demo</div>
-      <div class="contact-card-desc">Se hur NordAssist kan generera leads för ditt företag.</div>
+      <div class="contact-card-desc">Se hur Nordassist jobbar med dina besökare i realtid.</div>
       <a href="mailto:hej@nordassist.ai?subject=Boka demo" class="contact-card-action">
         Boka demo
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -324,30 +339,6 @@
   </div>
 </div>
 
-<!-- ── Divider ── -->
-<div class="page-divider"></div>
-
-<!-- ── Bottom CTA ── -->
-<div class="contact-cta">
-  <div class="contact-cta-box">
-    <h2 class="contact-cta-title">Vill du se hur det fungerar i praktiken?</h2>
-    <p class="contact-cta-sub">Testa NordAssist själv eller boka en personlig demo.</p>
-    <div class="contact-cta-actions">
-      <a href="https://app.getnordassist.com/signup" class="btn btn-primary">
-        Testa gratis
-        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-      <a href="mailto:hej@nordassist.ai?subject=Boka demo" class="btn btn-demo">
-        Boka demo
-        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
-  </div>
-</div>
 
 <footer id="footer">
   <div class="w">

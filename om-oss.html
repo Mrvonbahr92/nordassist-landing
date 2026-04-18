@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Om oss — NordAssist</title>
-  <meta name="description" content="Lär dig mer om NordAssist — AI-säljaren som aldrig sover."/>
+  <title>Om oss – NordAssist</title>
+  <meta name="description" content="Vi tröttnade på att företag tappar kunder. Så vi byggde en AI-säljare som aldrig missar en."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -16,10 +16,19 @@
     .page-hero .lead{max-width:520px;margin:0 auto;text-align:center}
     .page-body{padding:0 0 var(--sec)}
     .page-section{max-width:720px;margin:0 auto;padding:0 40px}
-    .page-section + .page-section{margin-top:64px}
-    .page-h2{font-size:22px;font-weight:700;letter-spacing:-.025em;color:var(--text);margin-bottom:16px}
-    .page-p{font-size:16px;color:var(--text-2);line-height:1.75;margin-bottom:16px}
+    .page-section + .page-section{margin-top:80px}
+    .page-h2{font-size:22px;font-weight:700;letter-spacing:-.025em;color:var(--text);margin-bottom:20px}
+    .page-p{font-size:16px;color:var(--text-2);line-height:1.85;margin-bottom:20px}
     .page-p:last-child{margin-bottom:0}
+    .page-p.punch{font-size:17px;color:var(--text);font-weight:500;line-height:1.7}
+
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .fi{opacity:0;animation:fadeInUp .75s ease forwards}
+    .fi-1{animation-delay:.05s}
+    .fi-2{animation-delay:.18s}
+    .fi-3{animation-delay:.32s}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.visible{opacity:1;transform:none}
     .page-divider{width:1px;height:64px;background:linear-gradient(to bottom,transparent,rgba(10,132,255,.25),transparent);margin:64px auto}
     .value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:32px}
     .value-card{background:var(--bg-raise);border:1px solid var(--border);border-radius:16px;padding:24px}
@@ -107,23 +116,26 @@
 
 <section class="page-hero">
   <div class="w-xs">
-    <div class="eyebrow">Om oss</div>
-    <h1 class="h1">Vi byggde säljaren<br>som aldrig sover.</h1>
-    <p class="lead">NordAssist är ett svenskt SaaS-bolag med ett tydligt uppdrag: att ge varje företag tillgång till en AI-säljare som arbetar dygnet runt — utan att ta semester.</p>
+    <div class="eyebrow fi fi-1">Om oss</div>
+    <h1 class="h1 fi fi-2">Vi tröttnade på att företag tappar kunder.<br>Så vi byggde en säljare som aldrig missar en.</h1>
+    <p class="lead fi fi-3">Nordassist är byggt för en enkel sak.<br>Att se till att ingen besökare lämnar utan svar.<br><br>En AI-säljare som arbetar dygnet runt.<br>Som svarar direkt.<br>Som fångar upp varje möjlighet.</p>
   </div>
 </section>
 
 <div class="page-body">
-  <div class="page-section">
+  <div class="page-section reveal">
     <h2 class="page-h2">Bakgrunden</h2>
-    <p class="page-p">Vi insåg att de flesta företag tappar sina potentiella kunder inte för att produkten är dålig — utan för att ingen svarade i rätt ögonblick. Besökaren kom till hemsidan, hittade inte svar snabbt nog, och lämnade. För alltid.</p>
-    <p class="page-p">NordAssist löser exakt det problemet. Vår AI-assistent välkomnar varje besökare, ställer rätt frågor, kvalificerar köpintresset och ser till att du aldrig missar ett lead igen — oavsett tid på dygnet.</p>
+    <p class="page-p punch">De flesta företag förlorar inte kunder för att deras produkt är dålig.</p>
+    <p class="page-p punch">De förlorar dem för att ingen svarar i rätt ögonblick.</p>
+    <p class="page-p">Besökaren kommer in.<br>Hittar inget snabbt svar.<br>Försvinner.<br><br>Och kommer aldrig tillbaka.</p>
+    <p class="page-p punch" style="margin-top:28px">Det var där Nordassist föddes.</p>
+    <p class="page-p">Inte som en chatbot.<br><br>Utan som en AI-säljare.<br>Som välkomnar varje besökare.<br>Ställer rätt frågor.<br>Kvalificerar intresse.<br><br>Och ser till att du aldrig missar en affär.</p>
   </div>
 
   <div class="page-divider"></div>
 
   <!-- ── Grundare ── -->
-  <div class="founder-wrap">
+  <div class="founder-wrap reveal">
     <div class="founder-card">
 
       <div class="founder-img-col">
@@ -134,10 +146,11 @@
 
       <div class="founder-text-col">
         <div class="eyebrow" style="margin-bottom:22px">Bakom NordAssist</div>
-        <p class="page-p">Jag heter Nils von Bahr och är grundaren bakom NordAssist.</p>
-        <p class="page-p">Idén föddes ur ett enkelt problem: företag tappar kunder varje dag – inte för att deras tjänst är dålig, utan för att ingen svarar i rätt tid.</p>
-        <p class="page-p">Jag ville bygga något som faktiskt löser det på riktigt. Inte bara en chatbot – utan en AI-säljare som arbetar dygnet runt, kvalificerar leads och hjälper företag att växa.</p>
-        <p class="page-p">NordAssist är byggt för företag som vill ta sin försäljning på allvar.</p>
+        <p class="page-p punch">Jag såg samma sak om och om igen.</p>
+        <p class="page-p">Bra företag som tappade kunder varje dag.<br>Inte för att de var dåliga.<br>Utan för att ingen svarade i tid.</p>
+        <p class="page-p punch">Det var där idén föddes.</p>
+        <p class="page-p">Jag ville bygga något som faktiskt gör skillnad.</p>
+        <p class="page-p">Inte ännu en chatbot.<br><br>Utan en AI-säljare som jobbar dygnet runt.<br>Kvalificerar leads.<br>Och hjälper företag att växa på riktigt.</p>
         <div class="founder-byline">
           <div class="founder-byline-name">Nils von Bahr</div>
           <div class="founder-byline-role">Founder, NordAssist</div>
@@ -149,7 +162,7 @@
 
   <div class="page-divider"></div>
 
-  <div class="page-section">
+  <div class="page-section reveal">
     <h2 class="page-h2">Vad vi tror på</h2>
     <div class="value-grid">
       <div class="value-card">
@@ -159,7 +172,7 @@
           </svg>
         </div>
         <div class="value-card-title">Trovärdighet</div>
-        <div class="value-card-desc">Vi bygger AI-lösningar som känns genuina och hjälper användare — inte vilseleder dem.</div>
+        <div class="value-card-desc">AI ska kännas mänsklig.<br>Inte som en robot.</div>
       </div>
       <div class="value-card">
         <div class="value-card-icon">
@@ -169,7 +182,7 @@
           </svg>
         </div>
         <div class="value-card-title">Resultat</div>
-        <div class="value-card-desc">Vi mäter framgång i faktiska leads, bokade möten och ökad omsättning — inte klick.</div>
+        <div class="value-card-desc">Vi bryr oss inte om klick.<br>Vi bryr oss om affärer.</div>
       </div>
       <div class="value-card">
         <div class="value-card-icon">
@@ -181,18 +194,18 @@
           </svg>
         </div>
         <div class="value-card-title">Enkelhet</div>
-        <div class="value-card-desc">En rad kod. Igång på 5 minuter. Ingen teknisk kunskap krävs.</div>
+        <div class="value-card-desc">Ska ta minuter att komma igång.<br>Inte veckor.</div>
       </div>
     </div>
   </div>
 
   <div class="page-divider"></div>
 
-  <div class="page-section" style="text-align:center">
-    <h2 class="page-h2">Redo att testa?</h2>
-    <p class="page-p" style="text-align:center;margin-bottom:32px">Starta 14 dagars gratis test och se hur NordAssist kan förändra hur din hemsida säljer.</p>
+  <div class="page-section reveal" style="text-align:center">
+    <h2 class="page-h2">Redo att sälja mer?</h2>
+    <p class="page-p" style="text-align:center;margin-bottom:32px">Testa Nordassist i 14 dagar och se vad som händer när ingen besökare lämnar utan svar.</p>
     <a href="https://app.getnordassist.com/signup" class="btn btn-primary">
-      Skapa konto gratis
+      Starta din AI-säljare
       <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -215,6 +228,18 @@
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
   }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    observer.observe(el);
+  });
 </script>
 </body>
 </html>
