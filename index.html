@@ -789,16 +789,15 @@
 <script src="./script.js"></script>
 
 <!-- ── NordAssist Widget ── -->
-<script
-  src="https://widget.getnordassist.com/widget.js"
-  data-client="nordassist-internal"
-  data-site="https://getnordassist.com"
-  data-template="agency"
-  data-position="br"
-  data-lang="sv"
-  data-lead-webhook="https://app.getnordassist.com/api/leads"
-  data-proxy-url="https://app.getnordassist.com/api/analytics"
-  defer
-></script>
+<script>
+  window.NordAssistConfig = {
+    clientId: 'nordassist-internal',
+    dashboardUrl: 'https://app.getnordassist.com',
+    voiceEnabled: true,
+  };
+</script>
+
+<script src="https://app.getnordassist.com/clients.js"></script>
+<script src="https://app.getnordassist.com/widget.js" defer></script>
 </body>
 </html>
