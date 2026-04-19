@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kontakt — NordAssist</title>
-  <meta name="description" content="Kontakta NordAssist — vi hjälper dig komma igång."/>
+  <meta name="description" content="Kontakta NordAssist — snabb support, AI-assistent och demo. Vi finns här när du behöver oss."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -26,22 +26,24 @@
       margin-bottom: 18px;
     }
     .page-hero .lead {
-      max-width: 420px;
+      max-width: 480px;
       margin: 0 auto;
       text-align: center;
       font-size: 17px;
+      line-height: 1.65;
     }
 
     /* ── Contact grid ── */
     .contact-section {
-      max-width: 1000px;
+      max-width: 1020px;
       margin: 0 auto;
-      padding: 0 40px 120px;
+      padding: 0 40px 80px;
     }
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      gap: 24px;
+      align-items: start;
     }
 
     /* ── Contact card ── */
@@ -49,15 +51,11 @@
       background: linear-gradient(145deg, rgba(255,255,255,0.058) 0%, rgba(255,255,255,0.022) 100%);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 22px;
-      padding: 40px 32px;
+      padding: 36px 32px;
       display: flex;
       flex-direction: column;
-      gap: 0;
       cursor: default;
-      transition:
-        transform .3s ease,
-        box-shadow .3s ease,
-        border-color .3s ease;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
       position: relative;
       overflow: hidden;
     }
@@ -73,13 +71,42 @@
     }
     .contact-card:hover {
       transform: translateY(-6px);
-      box-shadow:
-        0 0 25px rgba(0,140,255,0.15),
-        0 24px 64px rgba(0,0,0,0.40),
-        0 0 0 1px rgba(41,151,255,0.22);
-      border-color: rgba(41,151,255,0.30);
+      box-shadow: 0 0 25px rgba(0,140,255,0.14), 0 24px 64px rgba(0,0,0,0.40), 0 0 0 1px rgba(41,151,255,0.20);
+      border-color: rgba(41,151,255,0.28);
     }
     .contact-card:hover::before { opacity: 1 }
+
+    /* ── Featured card (card 2) ── */
+    .contact-card--featured {
+      background: linear-gradient(145deg, rgba(108,99,255,0.12) 0%, rgba(10,132,255,0.06) 100%);
+      border-color: rgba(108,99,255,0.35);
+      box-shadow: 0 0 40px rgba(108,99,255,0.10), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .contact-card--featured::before {
+      background: radial-gradient(ellipse at 30% 0%, rgba(108,99,255,0.15) 0%, transparent 65%);
+    }
+    .contact-card--featured:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 50px rgba(108,99,255,0.22), 0 28px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(108,99,255,0.45);
+      border-color: rgba(108,99,255,0.55);
+    }
+    .contact-card--featured:hover::before { opacity: 1 }
+
+    /* ── Badge ── */
+    .contact-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      background: rgba(108,99,255,0.18);
+      border: 1px solid rgba(108,99,255,0.35);
+      border-radius: 100px;
+      padding: 3px 10px;
+    }
 
     /* ── Icon circle ── */
     .contact-icon {
@@ -94,15 +121,21 @@
       margin-bottom: 24px;
       flex-shrink: 0;
       box-shadow: 0 0 16px rgba(10,132,255,0.10);
-      transition:
-        box-shadow .3s ease,
-        transform .3s ease,
-        border-color .3s ease;
+      transition: box-shadow .3s ease, transform .3s ease, border-color .3s ease;
+    }
+    .contact-card--featured .contact-icon {
+      background: radial-gradient(circle, rgba(108,99,255,0.22) 0%, rgba(108,99,255,0.08) 100%);
+      border-color: rgba(108,99,255,0.35);
+      box-shadow: 0 0 16px rgba(108,99,255,0.15);
     }
     .contact-card:hover .contact-icon {
       box-shadow: 0 0 28px rgba(10,132,255,0.35), 0 0 0 1px rgba(41,151,255,0.30);
       transform: scale(1.10);
       border-color: rgba(41,151,255,0.50);
+    }
+    .contact-card--featured:hover .contact-icon {
+      box-shadow: 0 0 32px rgba(108,99,255,0.45), 0 0 0 1px rgba(108,99,255,0.50);
+      border-color: rgba(108,99,255,0.60);
     }
     .contact-icon svg {
       width: 18px;
@@ -110,7 +143,9 @@
       color: var(--blue-2);
       transition: color .3s ease;
     }
+    .contact-card--featured .contact-icon svg { color: #a5b4fc }
     .contact-card:hover .contact-icon svg { color: #60baff }
+    .contact-card--featured:hover .contact-icon svg { color: #c4bfff }
 
     /* ── Card text ── */
     .contact-card-title {
@@ -124,24 +159,10 @@
     .contact-card-desc {
       font-size: 14px;
       color: var(--text-3);
-      line-height: 1.82;
+      line-height: 1.78;
       flex: 1;
       margin-bottom: 0;
     }
-
-    .hero-sub {
-      font-size: 13px;
-      color: var(--text-3);
-      margin-top: 14px;
-      letter-spacing: .01em;
-    }
-
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-    .fi{opacity:0;animation:fadeInUp .7s ease forwards}
-    .fi-1{animation-delay:.05s}
-    .fi-2{animation-delay:.18s}
-    .fi-3{animation-delay:.3s}
-    .fi-4{animation-delay:.42s}
 
     /* ── Card action ── */
     .contact-card-action {
@@ -153,10 +174,12 @@
       font-weight: 600;
       color: var(--blue-2);
       text-decoration: none;
-      transition: color .2s ease, gap .2s ease;
+      transition: color .2s ease, gap .2s ease, text-shadow .2s ease;
       letter-spacing: -.005em;
     }
+    .contact-card--featured .contact-card-action { color: #a5b4fc }
     .contact-card-action:hover { color: #fff; gap: 9px }
+    .contact-card--featured .contact-card-action:hover { color: #fff; text-shadow: 0 0 14px rgba(165,180,252,0.55) }
     .contact-card-action svg {
       width: 14px;
       height: 14px;
@@ -165,79 +188,91 @@
     }
     .contact-card-action:hover svg { transform: translateX(2px) }
 
-    /* ── Divider ── */
-    .page-divider {
-      width: 1px;
-      height: 64px;
-      background: linear-gradient(to bottom, transparent, rgba(10,132,255,.28), transparent);
-      margin: 0 auto 80px;
-    }
-
-    /* ── Bottom CTA ── */
-    .contact-cta {
-      max-width: 600px;
+    /* ── Trust section ── */
+    .trust-section {
+      max-width: 1020px;
       margin: 0 auto;
-      padding: 0 40px 100px;
-      text-align: center;
+      padding: 0 40px 120px;
     }
-    .contact-cta-box {
-      background: linear-gradient(145deg, rgba(10,132,255,0.10) 0%, rgba(90,80,220,0.06) 100%);
-      border: 1px solid rgba(10,132,255,0.22);
-      border-radius: 24px;
-      padding: 56px 48px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 80px rgba(10,132,255,0.07), inset 0 1px 0 rgba(255,255,255,0.05);
+    .trust-inner {
+      background: linear-gradient(145deg, rgba(255,255,255,0.032) 0%, rgba(255,255,255,0.012) 100%);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 22px;
+      padding: 52px 56px;
+      display: flex;
+      align-items: center;
+      gap: 64px;
     }
-    .contact-cta-box::before {
-      content: '';
-      position: absolute;
-      top: -80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 400px;
-      height: 200px;
-      background: radial-gradient(ellipse, rgba(10,132,255,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .contact-cta-title {
-      font-size: clamp(22px, 3vw, 30px);
+    .trust-heading {
+      font-size: clamp(20px, 2.5vw, 26px);
       font-weight: 800;
-      letter-spacing: -.035em;
-      line-height: 1.15;
+      letter-spacing: -.03em;
+      line-height: 1.2;
       color: var(--text);
-      margin-bottom: 14px;
-      position: relative;
+      flex-shrink: 0;
+      min-width: 180px;
     }
-    .contact-cta-sub {
-      font-size: 15.5px;
-      color: var(--text-2);
-      line-height: 1.65;
-      margin-bottom: 36px;
-      position: relative;
+    .trust-divider {
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.10), transparent);
+      flex-shrink: 0;
     }
-    .contact-cta-actions {
+    .trust-items {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      flex: 1;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .trust-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(10,132,255,0.20) 0%, rgba(10,132,255,0.06) 100%);
+      border: 1px solid rgba(10,132,255,0.28);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      position: relative;
+      flex-shrink: 0;
     }
+    .trust-dot svg {
+      width: 13px;
+      height: 13px;
+      color: var(--blue-2);
+    }
+    .trust-item-text {
+      font-size: 14.5px;
+      color: var(--text-2);
+      font-weight: 500;
+      letter-spacing: -.01em;
+    }
+
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .fi{opacity:0;animation:fadeInUp .7s ease forwards}
+    .fi-1{animation-delay:.05s}
+    .fi-2{animation-delay:.18s}
+    .fi-3{animation-delay:.3s}
+    .fi-4{animation-delay:.42s}
+    .fi-5{animation-delay:.52s}
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: repeat(2, 1fr) }
+      .trust-inner { flex-direction: column; gap: 32px; padding: 40px 36px }
+      .trust-divider { width: 64px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.10), transparent) }
     }
     @media (max-width: 600px) {
       .page-hero { padding: 100px 0 60px }
-      .contact-section { padding: 0 20px 64px }
+      .contact-section { padding: 0 20px 56px }
       .contact-grid { grid-template-columns: 1fr; gap: 14px }
       .contact-card { padding: 28px 24px }
-      .contact-cta { padding: 0 20px 72px }
-      .contact-cta-box { padding: 36px 24px }
-      .contact-cta-actions { flex-direction: column; align-items: stretch }
-      .contact-cta-actions .btn { text-align: center; justify-content: center }
+      .trust-section { padding: 0 20px 80px }
+      .trust-inner { padding: 32px 24px }
     }
 
   </style>
@@ -267,17 +302,16 @@
 <section class="page-hero">
   <div class="w-xs">
     <div class="eyebrow fi fi-1">Kontakt</div>
-    <h1 class="h1 fi fi-2">Kontakta oss</h1>
-    <p class="lead fi fi-3">Vi svarar snabbt. Oavsett hur du hör av dig.</p>
-    <p class="hero-sub fi fi-4">De flesta får svar inom några minuter.</p>
+    <h1 class="h1 fi fi-2">Vi finns här när du behöver oss</h1>
+    <p class="lead fi fi-3">Få svar direkt via vår AI-assistent eller kontakta vårt team. Vi hjälper dig komma igång, optimera och växa.</p>
   </div>
 </section>
 
 <!-- ── Cards ── -->
-<div class="contact-section">
+<div class="contact-section fi fi-4">
   <div class="contact-grid">
 
-    <!-- E-post -->
+    <!-- Card 1: E-post -->
     <div class="contact-card">
       <div class="contact-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -285,18 +319,19 @@
           <polyline points="22,6 12,13 2,6"/>
         </svg>
       </div>
-      <div class="contact-card-title">Mejla mig direkt</div>
-      <div class="contact-card-desc">Frågor eller redo att komma igång?<br>Skriv till mig så svarar jag snabbt.</div>
-      <a href="mailto:nils@getnordassist.com" class="contact-card-action">
-        nils@getnordassist.com
+      <div class="contact-card-title">Kontakta oss</div>
+      <div class="contact-card-desc">Har du frågor om NordAssist eller vill komma igång? Vi svarar snabbt.</div>
+      <a href="mailto:kontakt@getnordassist.com" class="contact-card-action">
+        kontakt@getnordassist.com
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
     </div>
 
-    <!-- Live support -->
-    <div class="contact-card">
+    <!-- Card 2: Chat (featured) -->
+    <div class="contact-card contact-card--featured">
+      <span class="contact-badge">Rekommenderat</span>
       <div class="contact-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -305,17 +340,17 @@
           <circle cx="15" cy="10" r="0.8" fill="currentColor" stroke="none"/>
         </svg>
       </div>
-      <div class="contact-card-title">Live support</div>
-      <div class="contact-card-desc">Redan kund?<br>Få hjälp direkt i chatten.</div>
-      <a href="https://app.getnordassist.com/login" class="contact-card-action">
-        Öppna dashboard
+      <div class="contact-card-title">Chatta med oss direkt</div>
+      <div class="contact-card-desc">Få svar direkt från vår AI-assistent Nova. Tillgänglig dygnet runt.</div>
+      <a href="#" onclick="return false;" class="contact-card-action" style="cursor:default;">
+        Klicka på chatten nere i hörnet
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
     </div>
 
-    <!-- Boka demo -->
+    <!-- Card 3: Demo -->
     <div class="contact-card">
       <div class="contact-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -327,8 +362,8 @@
         </svg>
       </div>
       <div class="contact-card-title">Boka demo</div>
-      <div class="contact-card-desc">Se hur Nordassist jobbar med dina besökare i realtid.</div>
-      <a href="mailto:nils@getnordassist.com?subject=Boka demo" class="contact-card-action">
+      <div class="contact-card-desc">Se exakt hur NordAssist kan hjälpa ditt företag i praktiken.</div>
+      <a href="mailto:kontakt@getnordassist.com?subject=Boka demo" class="contact-card-action">
         Boka demo
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -336,6 +371,40 @@
       </a>
     </div>
 
+  </div>
+</div>
+
+<!-- ── Trust section ── -->
+<div class="trust-section fi fi-5">
+  <div class="trust-inner">
+    <div class="trust-heading">Snabba svar,<br>varje gång</div>
+    <div class="trust-divider"></div>
+    <div class="trust-items">
+      <div class="trust-item">
+        <div class="trust-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <span class="trust-item-text">Svar inom några minuter</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <span class="trust-item-text">AI + mänsklig support</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <span class="trust-item-text">Hjälp från onboarding till skalning</span>
+      </div>
+    </div>
   </div>
 </div>
 
