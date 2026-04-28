@@ -190,9 +190,8 @@
         }
       });
 
-      // Hide the "Se live demo" hero button — not needed for logged-in users
-      var demoBtn = document.querySelector('.hero-actions .btn-demo');
-      if (demoBtn) demoBtn.style.display = 'none';
+      // Demo buttons always keep their href (/dashboard/demo?demo=true) —
+      // never hide or rewrite them, even for logged-in users.
 
       // Nav CTA → dashboard
       var navCta = document.querySelector('.nav-cta');
