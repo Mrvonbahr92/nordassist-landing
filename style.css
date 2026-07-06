@@ -527,7 +527,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* ── Text ── */
 .vp-card-title{
-  font-size:15.5px;
+  font-size:16px;
   font-weight:700;
   color:var(--text);
   letter-spacing:-.025em;
@@ -542,7 +542,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* ── Tagline ── */
 .vp-tagline{
   text-align:center;
-  margin-top:72px;
+  margin-top:56px;
   padding:0 40px;
   position:relative;
   z-index:1;
