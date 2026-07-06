@@ -245,14 +245,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 .hero-sub{
   font-size:clamp(17px,1.8vw,19px);line-height:1.6;color:var(--text-2);
-  max-width:480px;margin:0 auto 40px;font-weight:400;
+  max-width:480px;margin:0 auto 28px;font-weight:400;
 }
 
 /* Video */
 .hero-video-wrap{
   position:relative;
   width:560px;height:560px;
-  margin:32px auto 40px;
+  margin:20px auto 8px;
   display:flex;align-items:center;justify-content:center;
   animation:heroFloat 7s ease-in-out infinite;
 }
@@ -275,7 +275,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   mask-image:        radial-gradient(circle, black 40%, transparent 70%);
 }
 
-.hero-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.hero-actions{
+  display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
+  position:relative;z-index:2;
+  margin-top:-16px; /* knyter CTA-paret till Novas mjuka nederkant */
+}
 
 .hero-live-tag{
   margin-top:20px;
@@ -298,10 +302,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 
 .hero-proof{
-  margin-top:44px;
-  display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;
+  margin-top:22px;
+  display:flex;align-items:center;justify-content:center;gap:8px 20px;flex-wrap:wrap;
 }
-.hero-proof-item{font-size:12px;font-weight:500;color:var(--text-3);letter-spacing:.02em}
+.hero-proof-item{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12.5px;font-weight:500;color:var(--text-3);letter-spacing:.02em;
+}
+.hero-proof-item svg{
+  width:11px;height:11px;flex-shrink:0;
+  color:rgba(48,209,88,.75);
+}
 .hero-proof-sep{width:3px;height:3px;border-radius:50%;background:var(--text-3)}
 
 /* Scroll cue */
@@ -1521,6 +1532,36 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   box-shadow:0 0 8px rgba(10,132,255,.8),0 0 3px var(--blue);
 }
 
+/* ─────────────────────────────────────────
+   HERO REFINEMENT — CTA-hierarki + trust
+   (endast hero-scopade klasser)
+───────────────────────────────────────── */
+/* Något större knappar i hero — beslutspunkten får mer närvaro */
+.hero-actions .btn{padding:15px 32px;font-size:15.5px}
+
+/* Sekundär: exklusivt glas — tydligt underordnad den blå primären */
+.hero-btn-live{
+  color:#E4E4E9; /* ljusare än text-2 — läsbar klickyta, fortfarande tydligt sekundär */
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+.hero-btn-live:hover{
+  color:var(--text);
+  background:rgba(255,255,255,.07);
+  border-color:rgba(10,132,255,.45);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 6px 26px rgba(10,132,255,.18);
+  transform:translateY(-2px);
+}
+/* Levande grön punkt i stället för generisk pil — signalerar "live nu" */
+.hero-btn-live-dot{
+  width:7px;height:7px;border-radius:50%;flex-shrink:0;
+  background:var(--green);
+  animation:livePulse 2s ease-out infinite;
+}
+
 /* ── Section separators — consistent 1px gradient lines ── */
 #hook,#dashboard,.feature-section,#results,#how,#compare,#pricing,#faq,#cta{
   position:relative;
@@ -1972,6 +2013,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     flex-direction:column;
     align-items:center;
     gap:10px;
+    margin-top:0; /* ingen overlap på mobil — videon är mindre där */
     width:92%;
     margin-left:auto;
     margin-right:auto;
