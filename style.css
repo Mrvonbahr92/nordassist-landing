@@ -1804,9 +1804,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   border-color:rgba(255,255,255,.09);
   box-shadow:0 32px 100px rgba(0,0,0,.65),0 0 0 1px rgba(10,132,255,.08);
 }
+/* Nova-avatar — samma levande logga som riktiga widgeten (widget.js #na-avatar) */
 .chat-avatar{
-  background:linear-gradient(135deg,#0A84FF 0%,#5E5CE6 100%);
-  box-shadow:0 0 10px rgba(10,132,255,.28);
+  background:linear-gradient(145deg,#001d6e,#003fa0 35%,#0A84FF 70%,#4DA3FF);
+  overflow:hidden;position:relative;
+  animation:chatAvatarGlow 4s ease-in-out infinite;
+}
+.chat-avatar-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;border-radius:50%;display:block;
+}
+/* Widgetens na-avatar-glow, ring-nivåer anpassade till mörk yta */
+@keyframes chatAvatarGlow{
+  0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,.14),0 0 0 3px rgba(10,132,255,.22),0 0 16px rgba(10,132,255,.20);transform:scale(1)}
+  50%    {box-shadow:0 0 0 1px rgba(255,255,255,.22),0 0 0 4px rgba(10,132,255,.38),0 0 26px rgba(10,132,255,.32);transform:scale(1.03)}
 }
 .chat-bubble-ai{
   background:var(--surface);
@@ -1848,6 +1859,43 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .feature-visual:hover .cal-mock{
   transform:translateY(-3px);
   box-shadow:0 48px 120px rgba(0,0,0,.7),0 0 0 1px rgba(10,132,255,.1);
+}
+
+/* ─────────────────────────────────────────
+   FEATURE POLISH — Leadfångst + Lead scoring
+───────────────────────────────────────── */
+/* Chat-status: doten lever, som övriga live-indikatorer på sidan */
+.chat-status::before{
+  box-shadow:0 0 6px rgba(48,209,88,.7);
+  animation:livebeat 2.4s ease-in-out infinite;
+}
+/* Score-staplar fyller vänster→höger när kortet revealas — en gång, staggered */
+.chat-score-fill,
+.lead-bar > div{
+  transform-origin:left;
+  transform:scaleX(0);
+  transition:transform .9s var(--ease-out);
+}
+.feature-visual.in .chat-score-fill{ transform:scaleX(1); transition-delay:.55s }
+.feature-visual.in .lead-bar > div { transform:scaleX(1) }
+.feature-visual.in .lead-item:nth-child(2) .lead-bar > div{ transition-delay:.4s }
+.feature-visual.in .lead-item:nth-child(3) .lead-bar > div{ transition-delay:.55s }
+.feature-visual.in .lead-item:nth-child(4) .lead-bar > div{ transition-delay:.7s }
+/* Chat-kortets score-fill — lyser inifrån */
+.chat-score-fill{ box-shadow:0 0 10px rgba(10,132,255,.4) }
+/* Status-mikroetiketter i score-kortet — systemkänsla */
+.lead-score-sub{
+  font-size:9px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.07em;
+  margin-top:2px;
+}
+/* Köpredo-badge — pulserande dot i stället för emoji */
+.lead-hot-badge{display:inline-flex;align-items:center;gap:6px}
+.lead-hot-dot{
+  width:5px;height:5px;border-radius:50%;flex-shrink:0;
+  background:#FF453A;
+  box-shadow:0 0 6px rgba(255,69,58,.8);
+  animation:livebeat 2.2s ease-in-out infinite;
 }
 
 /* ── Feature sections — unified background for seamless flow ── */
@@ -1902,6 +1950,129 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .faq-item{transition:border-color var(--dur-micro) var(--ease)}
 .faq-q{font-size:15px;letter-spacing:-.01em;transition:background var(--dur-micro) var(--ease)}
 .faq-a{font-size:14.5px;color:var(--text-2);line-height:1.7}
+
+/* ─────────────────────────────────────────
+   FINAL POLISH — Mötesbokning · 5 minuter · FAQ
+───────────────────────────────────────── */
+
+/* ── Kalendern: vald dag → vald tid, samma logik som riktiga bokningsflödet ── */
+.cal-header{background:rgba(255,255,255,.02)}
+.cal-nav-btn:hover{background:rgba(255,255,255,.05)}
+.cal-cell{position:relative}
+/* Idag: ring — den solida fyllningen är reserverad för valet */
+.cal-cell.today{
+  background:transparent;
+  box-shadow:inset 0 0 0 1.5px rgba(10,132,255,.5);
+  color:var(--blue-2);font-weight:600;
+}
+/* Lediga dagar: diskret grön dot under siffran i stället för gröna plattor */
+.cal-cell.available{
+  background:transparent;color:var(--text);font-weight:500;
+}
+.cal-cell.available::after{
+  content:'';position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
+  width:3px;height:3px;border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 4px rgba(48,209,88,.6);
+}
+/* Vald dag: solid blå med glöd — kopplar gridden till tidslistan */
+.cal-cell.selected{
+  background:var(--blue);color:#fff;font-weight:700;
+  box-shadow:0 0 0 3px rgba(10,132,255,.16),0 4px 14px rgba(10,132,255,.35);
+}
+/* Tider: mjukare chips, vald tid får ✓ och samma glöd som dagen */
+.cal-slot{border-radius:10px;padding:8px 14px}
+.cal-slot.selected{
+  display:inline-flex;align-items:center;gap:6px;font-weight:600;
+  box-shadow:0 0 0 3px rgba(10,132,255,.14),0 4px 14px rgba(10,132,255,.3);
+}
+.cal-slot.selected::before{content:'✓';font-size:11px;font-weight:700}
+.cal-slot-list{background:rgba(255,255,255,.015)}
+/* Reveal-sekvens: dagen väljs, sedan tiden — kortet visar hela flödet självt */
+.feature-visual .cal-cell.selected{
+  background:transparent;color:var(--text-2);font-weight:500;box-shadow:none;
+  transition:background .45s var(--ease),color .45s var(--ease),
+             font-weight 0s .45s,box-shadow .45s var(--ease);
+  transition-delay:.5s;
+}
+.feature-visual.in .cal-cell.selected{
+  background:var(--blue);color:#fff;font-weight:700;
+  box-shadow:0 0 0 3px rgba(10,132,255,.16),0 4px 14px rgba(10,132,255,.35);
+}
+.feature-visual .cal-slot.selected{
+  background:transparent;border-color:var(--border);color:var(--text-2);box-shadow:none;
+  transition:background .45s var(--ease),border-color .45s var(--ease),
+             color .45s var(--ease),box-shadow .45s var(--ease);
+  transition-delay:.9s;
+}
+.feature-visual.in .cal-slot.selected{
+  background:var(--blue);border-color:var(--blue);color:#fff;
+  box-shadow:0 0 0 3px rgba(10,132,255,.14),0 4px 14px rgba(10,132,255,.3);
+}
+.feature-visual .cal-slot.selected::before{opacity:0;transition:opacity .3s var(--ease) .9s}
+.feature-visual.in .cal-slot.selected::before{opacity:1}
+
+/* ── Igång på 5 minuter ── */
+/* Kort: glaskant upptill + svagt ljus uppifrån */
+.how-step-inner{
+  background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0) 42%),var(--bg-float);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+.how-step:hover .how-step-inner{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),
+             0 0 0 1px rgba(10,132,255,.08),0 24px 60px rgba(0,0,0,.4),0 0 40px rgba(10,132,255,.08);
+}
+/* Korten landar ett i taget — 01 → 02 → 03 */
+.how-steps .how-step{
+  opacity:0;transform:translateY(16px);
+  transition:opacity .6s var(--ease-out),transform .6s var(--ease-out);
+}
+.how-steps.in .how-step{opacity:1;transform:none}
+.how-steps.in .how-step:nth-child(2){transition-delay:.12s}
+.how-steps.in .how-step:nth-child(3){transition-delay:.24s}
+/* Connectors: överbryggar nu faktiskt gapet mellan korten */
+.how-connector{
+  position:absolute;top:50%;right:-24px;
+  width:24px;padding:0;margin:0;
+}
+.how-connector::after{
+  width:100%;height:1.5px;
+  background:linear-gradient(90deg,rgba(10,132,255,.45),rgba(10,132,255,.08));
+  box-shadow:0 0 6px rgba(10,132,255,.2);
+}
+
+/* ── FAQ — djup, mjukare öppning, läsbar textbredd ── */
+.faq-list{gap:10px}
+.faq-item{
+  transition:border-color var(--dur-hover) var(--ease),
+             box-shadow var(--dur-hover) var(--ease),
+             background var(--dur-hover) var(--ease);
+}
+.faq-item:hover{border-color:rgba(255,255,255,.13)}
+.faq-item.open{
+  border-color:var(--blue-border);
+  background:rgba(10,132,255,.02);
+  box-shadow:0 0 0 1px rgba(10,132,255,.06),0 12px 40px rgba(0,0,0,.35),0 0 30px rgba(10,132,255,.05);
+}
+.faq-item.open .faq-q{color:#fff}
+.faq-icon{
+  transition:transform .32s var(--ease-out),
+             background var(--dur-hover) var(--ease),
+             border-color var(--dur-hover) var(--ease),
+             color var(--dur-hover) var(--ease);
+}
+.faq-q:hover .faq-icon{border-color:rgba(255,255,255,.28);color:var(--text)}
+.faq-a{
+  max-width:60ch;
+  opacity:0;transform:translateY(-4px);
+  transition:max-height .42s var(--ease-out),padding .3s var(--ease),
+             opacity .28s var(--ease),transform .34s var(--ease-out);
+}
+.faq-item.open .faq-a{
+  opacity:1;transform:none;
+  transition:max-height .5s var(--ease-out),padding .3s var(--ease),
+             opacity .4s var(--ease) .1s,transform .45s var(--ease-out) .08s;
+}
 
 /* ── CTA section ── */
 .cta-orb{ display:none }

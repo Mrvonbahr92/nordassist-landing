@@ -304,7 +304,7 @@
       <div class="feature-copy r">
         <div class="eyebrow" style="margin-bottom:24px">Leadfångst</div>
         <h3 id="feat1-title" class="h3" style="margin-bottom:20px">Aldrig mer ett missat samtal.</h3>
-        <p class="body" style="margin-bottom:36px;max-width:440px">
+        <p class="body" style="max-width:440px">
           NordAssist svarar varje besökare, oavsett om det är lördag kväll eller måndag morgon. Kontaktuppgifter samlas in automatiskt, utan formulär och utan friktion.
         </p>
       </div>
@@ -312,10 +312,14 @@
       <div class="feature-visual r r-d1" aria-hidden="true">
         <div class="chat-mock">
           <div class="chat-header">
-            <div class="chat-avatar">N</div>
+            <div class="chat-avatar">
+              <video class="chat-avatar-video" autoplay muted loop playsinline tabindex="-1">
+                <source src="./assets/ai-avatar.mp4" type="video/mp4">
+              </video>
+            </div>
             <div class="chat-header-info">
-              <div class="chat-name">NordAssist</div>
-              <div class="chat-status">Online · Svarar direkt</div>
+              <div class="chat-name">Nova</div>
+              <div class="chat-status">Online nu</div>
             </div>
           </div>
           <div class="chat-messages">
@@ -354,7 +358,7 @@
       <div class="feature-copy r">
         <div class="eyebrow" style="margin-bottom:24px">Lead scoring</div>
         <h3 id="feat2-title" class="h3" style="margin-bottom:20px">Du ser direkt vem du ska ringa.</h3>
-        <p class="body" style="margin-bottom:36px;max-width:440px">
+        <p class="body" style="max-width:440px">
           Varje lead scorar 0–100 baserat på vad de frågat, vilka sidor de besökt och hur länge de stannat. Du slösar aldrig mer tid på fel person.
         </p>
       </div>
@@ -363,7 +367,7 @@
         <div class="lead-mock">
           <div class="lead-mock-header">
             <div class="lead-mock-title">Leads just nu</div>
-            <div class="lead-hot-badge">🔥 3 köpredo</div>
+            <div class="lead-hot-badge"><span class="lead-hot-dot" aria-hidden="true"></span>3 köpredo</div>
           </div>
 
           <div class="lead-item">
@@ -373,9 +377,9 @@
               <div class="lead-company">Besökt prissidan 3 ggr</div>
             </div>
             <div class="lead-score">
-              <div class="lead-score-num" style="color:#FF453A">94</div>
+              <div class="lead-score-num" style="color:#FF453A;text-shadow:0 0 14px rgba(255,69,58,.38)">94</div>
               <div class="lead-score-sub">Ring nu</div>
-              <div class="lead-bar" style="background:rgba(255,69,58,.3)"><div style="width:94%;height:100%;background:#FF453A;border-radius:2px"></div></div>
+              <div class="lead-bar" style="background:rgba(255,69,58,.16)"><div style="width:94%;height:100%;background:#FF453A;border-radius:2px;box-shadow:0 0 8px rgba(255,69,58,.5)"></div></div>
             </div>
           </div>
 
@@ -388,7 +392,7 @@
             <div class="lead-score">
               <div class="lead-score-num" style="color:#FF9F0A">71</div>
               <div class="lead-score-sub">Varm</div>
-              <div class="lead-bar" style="background:rgba(255,159,10,.3)"><div style="width:71%;height:100%;background:#FF9F0A;border-radius:2px"></div></div>
+              <div class="lead-bar" style="background:rgba(255,159,10,.16)"><div style="width:71%;height:100%;background:#FF9F0A;border-radius:2px"></div></div>
             </div>
           </div>
 
@@ -401,7 +405,7 @@
             <div class="lead-score">
               <div class="lead-score-num" style="color:#0A84FF">38</div>
               <div class="lead-score-sub">Följ upp</div>
-              <div class="lead-bar" style="background:rgba(10,132,255,.3)"><div style="width:38%;height:100%;background:#0A84FF;border-radius:2px"></div></div>
+              <div class="lead-bar" style="background:rgba(10,132,255,.16)"><div style="width:38%;height:100%;background:#0A84FF;border-radius:2px"></div></div>
             </div>
           </div>
         </div>
@@ -454,7 +458,7 @@
             <div class="cal-cell">5</div><div class="cal-cell">6</div>
             <div class="cal-cell">7</div><div class="cal-cell">8</div>
             <div class="cal-cell">9</div><div class="cal-cell today">10</div>
-            <div class="cal-cell available">11</div>
+            <div class="cal-cell selected">11</div>
             <div class="cal-cell available">12</div>
             <div class="cal-cell">13</div>
             <div class="cal-cell">14</div>
