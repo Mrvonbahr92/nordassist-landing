@@ -4,92 +4,352 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Om oss – NordAssist</title>
-  <meta name="description" content="Vi tröttnade på att företag tappar kunder. Så vi byggde en AI-säljare som aldrig missar en."/>
+  <meta name="description" content="NordAssist byggdes för att inga affärer ska gå förlorade för att ingen svarade. Läs om varför vi finns, vad vi byggt och personen bakom."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="./style.css?v=25"/>
   <style>
-    .page-hero{padding:160px 0 80px;text-align:center}
-    .page-hero .eyebrow{justify-content:center;margin-bottom:20px}
-    .page-hero .h1{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-.04em;line-height:1.05;color:var(--text);margin-bottom:20px}
-    .page-hero .lead{max-width:520px;margin:0 auto;text-align:center}
-    .page-body{padding:0 0 var(--sec)}
-    .page-section{max-width:720px;margin:0 auto;padding:0 40px}
-    .page-section + .page-section{margin-top:80px}
-    .page-h2{font-size:22px;font-weight:700;letter-spacing:-.025em;color:var(--text);margin-bottom:20px}
-    .page-p{font-size:16px;color:var(--text-2);line-height:1.85;margin-bottom:20px}
-    .page-p:last-child{margin-bottom:0}
-    .page-p.punch{font-size:17px;color:var(--text);font-weight:500;line-height:1.7}
+    /* ═══ Om oss — sidspecifika styles (ab-prefix, rör inte style.css) ═══ */
 
+    .ab-wrap{max-width:1060px;margin:0 auto;padding:0 40px}
+    .ab-narrow{max-width:620px}
+    .ab-sec{margin-top:112px}
+    .ab-h2{font-size:clamp(26px,3.4vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.12;color:var(--text);margin-bottom:18px}
+    .ab-p{font-size:16px;line-height:1.75;color:var(--text-2)}
+    .ab-p + .ab-p{margin-top:16px}
+
+    /* ── Reveal (samma system som tidigare sida) ── */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
     .fi{opacity:0;animation:fadeInUp .75s ease forwards}
     .fi-1{animation-delay:.05s}
-    .fi-2{animation-delay:.18s}
-    .fi-3{animation-delay:.32s}
+    .fi-2{animation-delay:.16s}
+    .fi-3{animation-delay:.28s}
+    .fi-4{animation-delay:.42s}
     .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
     .reveal.visible{opacity:1;transform:none}
-    .page-divider{width:1px;height:64px;background:linear-gradient(to bottom,transparent,rgba(10,132,255,.25),transparent);margin:64px auto}
-    .value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:32px}
-    .value-card{background:var(--bg-raise);border:1px solid var(--border);border-radius:16px;padding:24px}
-    .value-card-icon{width:36px;height:36px;border-radius:10px;background:var(--blue-dim);border:1px solid var(--blue-border);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-    .value-card-icon svg{width:18px;height:18px;color:var(--blue-2)}
-    .value-card-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.01em}
-    .value-card-desc{font-size:13.5px;color:var(--text-3);line-height:1.65}
 
-    /* ── Founder section ── */
-    .founder-wrap{max-width:800px;margin:0 auto;padding:0 40px}
-    .founder-card{
+    /* ── Hero: text vänster, levande chattscen höger ── */
+    .ab-hero{padding:150px 0 0;position:relative}
+    .ab-hero::before{
+      content:'';position:absolute;top:40px;right:8%;
+      width:min(560px,60vw);height:420px;border-radius:50%;
+      background:radial-gradient(circle,rgba(10,132,255,.08) 0%,transparent 68%);
+      filter:blur(30px);pointer-events:none;
+    }
+    .ab-hero-grid{
+      display:grid;grid-template-columns:1.08fr .92fr;
+      gap:72px;align-items:center;position:relative;
+    }
+    .ab-hero h1{
+      font-size:clamp(34px,4.6vw,58px);
+      font-weight:800;letter-spacing:-.038em;line-height:1.06;
+      color:var(--text);margin:22px 0 20px;
+    }
+    .ab-hero .lead{max-width:480px}
+
+    /* Chattscenen — lördag kväll, Nova svarar */
+    .ab-chat{
+      background:var(--bg-float);
+      border:1px solid var(--border-hi);
+      border-radius:20px;padding:22px 22px 20px;
+      box-shadow:0 32px 100px rgba(0,0,0,.6),0 0 0 1px rgba(10,132,255,.08);
+      max-width:400px;justify-self:end;width:100%;
+    }
+    .ab-chat-top{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:18px;padding-bottom:14px;
+      border-bottom:1px solid var(--border);
+    }
+    .ab-chat-time{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
+    .ab-chat-nova{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:11.5px;font-weight:600;color:var(--green);
+    }
+    .ab-chat-nova::before{
+      content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;
+      background:var(--green);box-shadow:0 0 5px var(--green);
+      animation:livebeat 2.2s ease-in-out infinite;
+    }
+    .ab-chat-msgs{display:flex;flex-direction:column;gap:12px}
+    .ab-chat-msgs .chat-bubble{font-size:13px}
+    .ab-chat-done{
+      margin-top:16px;
+      display:flex;align-items:center;gap:8px;
+      padding:10px 14px;border-radius:10px;
+      background:rgba(48,209,88,.07);border:1px solid rgba(48,209,88,.18);
+      font-size:12.5px;font-weight:500;color:rgba(255,255,255,.75);
+    }
+    .ab-chat-done svg{width:13px;height:13px;flex-shrink:0;color:var(--green)}
+    /* Samtalet spelas upp när sidan laddar — en gång, lugnt tempo */
+    @keyframes abMsg{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .ab-chat-msgs .chat-bubble{opacity:0;animation:abMsg .5s cubic-bezier(.16,1,.3,1) forwards}
+    .ab-chat-msgs .chat-bubble:nth-child(1){animation-delay:1s}
+    .ab-chat-msgs .chat-bubble:nth-child(2){animation-delay:1.9s}
+    .ab-chat-msgs .chat-bubble:nth-child(3){animation-delay:2.8s}
+    .ab-chat-done{opacity:0;animation:abMsg .5s cubic-bezier(.16,1,.3,1) 3.6s forwards}
+
+    /* Produktbevis under hero-texten */
+    .ab-hero-proof{
+      margin-top:32px;display:flex;align-items:center;gap:10px 24px;flex-wrap:wrap;
+    }
+    .ab-hero-proof span{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:13px;font-weight:500;color:var(--text-3);letter-spacing:.01em;
+    }
+    .ab-hero-proof span::before{
+      content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0;
+      background:var(--blue);box-shadow:0 0 8px rgba(10,132,255,.8);
+    }
+
+    /* ── Problemet: två flöden, utan och med ── */
+    .ab-flows{
+      margin-top:40px;
+      border:1px solid var(--border);border-radius:20px;
+      background:var(--bg-raise);
+      padding:28px 30px;
+      display:flex;flex-direction:column;gap:24px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .ab-flow-label{
+      font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--text-3);margin-bottom:12px;
+    }
+    .ab-flow-label.med{color:var(--blue-2)}
+    .ab-flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+    .ab-step{
+      padding:9px 15px;border-radius:11px;
+      font-size:13px;font-weight:500;color:var(--text-2);
+      border:1px solid var(--border);background:rgba(255,255,255,.02);
+      white-space:nowrap;
+    }
+    .ab-step.bad{
+      color:#FF7A70;border-color:rgba(255,69,58,.28);background:rgba(255,69,58,.06);
+    }
+    .ab-step.nova{
+      color:#fff;border-color:rgba(10,132,255,.45);background:rgba(10,132,255,.16);
+      box-shadow:0 0 14px rgba(10,132,255,.15);font-weight:600;
+    }
+    .ab-step.good{
+      color:#5CE08A;border-color:rgba(48,209,88,.28);background:rgba(48,209,88,.06);
+    }
+    .ab-arr{width:14px;height:1px;background:rgba(255,255,255,.16);flex-shrink:0}
+    .ab-flow-div{height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+
+    /* ── Vad vi byggde: copy vänster, förmågor höger ── */
+    .ab-built{
+      display:grid;grid-template-columns:.9fr 1.1fr;
+      gap:64px;align-items:start;
+    }
+    .ab-built-copy{position:sticky;top:110px}
+    /* Resan: en besökare blir en affär — sidans visuella centrum */
+    .ab-journey{position:relative;padding-left:36px}
+    .ab-journey::before{
+      content:'';position:absolute;left:10px;top:16px;bottom:26px;width:1.5px;
+      background:linear-gradient(to bottom,rgba(10,132,255,.7),rgba(10,132,255,.25) 55%,rgba(48,209,88,.5));
+      box-shadow:0 0 10px rgba(10,132,255,.25);
+    }
+    .ab-jn{position:relative;padding-bottom:36px}
+    .ab-jn:last-child{padding-bottom:0}
+    .ab-jn-dot{
+      position:absolute;left:-31px;top:4px;width:11px;height:11px;border-radius:50%;
+      background:var(--bg);border:2px solid var(--blue);
+      box-shadow:0 0 10px rgba(10,132,255,.5);
+    }
+    .ab-jn:last-child .ab-jn-dot{border-color:var(--green);box-shadow:0 0 10px rgba(48,209,88,.5)}
+    .ab-jn-title{font-size:15.5px;font-weight:700;letter-spacing:-.015em;color:var(--text)}
+    .ab-jn-desc{font-size:13.5px;color:var(--text-3);line-height:1.6;margin-top:4px;max-width:380px}
+    .ab-jn-art{margin-top:14px}
+    /* Noderna landar en i taget när sektionen scrollas fram */
+    .ab-jn{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease}
+    .reveal.visible .ab-jn{opacity:1;transform:none}
+    .reveal.visible .ab-jn:nth-child(2){transition-delay:.12s}
+    .reveal.visible .ab-jn:nth-child(3){transition-delay:.24s}
+    .reveal.visible .ab-jn:nth-child(4){transition-delay:.36s}
+    .reveal.visible .ab-jn:nth-child(5){transition-delay:.48s}
+    .reveal.visible .ab-jn:nth-child(6){transition-delay:.6s}
+
+    /* Produkt-artefakter längs resan */
+    .ab-art-bubble{
+      display:inline-block;padding:10px 14px;
+      border-radius:14px;border-bottom-left-radius:4px;
+      background:var(--surface);border:1px solid rgba(255,255,255,.06);
+      font-size:13px;color:var(--text-2);line-height:1.5;max-width:300px;
+    }
+    .ab-art-score{
+      display:inline-flex;align-items:center;gap:12px;
+      padding:10px 14px;border-radius:10px;
+      background:rgba(10,132,255,.08);border:1px solid rgba(10,132,255,.18);
+      font-size:12px;color:var(--text-2);
+    }
+    .ab-art-score b{font-size:16px;font-weight:800;color:var(--blue-2);letter-spacing:-.03em}
+    .ab-art-bar{display:block;width:90px;height:4px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden}
+    .ab-art-bar > span{
+      display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-2));border-radius:2px;
+      transform-origin:left;transform:scaleX(0);
+      transition:transform .8s cubic-bezier(.16,1,.3,1) .6s;
+    }
+    .reveal.visible .ab-art-bar > span{transform:scaleX(1)}
+    .ab-art-chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:9px 14px;border-radius:10px;
+      border:1px solid var(--border-hi);background:rgba(255,255,255,.03);
+      font-size:13px;font-weight:500;color:var(--text-2);
+    }
+    .ab-art-chip svg{width:12px;height:12px;color:var(--green);flex-shrink:0}
+    .ab-art-seg{
+      display:inline-flex;gap:4px;padding:4px;border-radius:10px;
+      border:1px solid var(--border);background:rgba(255,255,255,.02);
+    }
+    .ab-art-seg span{padding:6px 12px;border-radius:7px;font-size:12px;font-weight:600;color:var(--text-3)}
+    .ab-art-seg .on{background:rgba(255,69,58,.12);color:#FF7A70;border:1px solid rgba(255,69,58,.25)}
+    .ab-art-lead{
+      display:inline-flex;align-items:center;gap:12px;
+      padding:12px 16px;border-radius:12px;
+      background:var(--bg-float);border:1px solid var(--border-hi);
+      box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 0 1px rgba(10,132,255,.06);
+    }
+    .ab-art-lead .ini{
+      width:30px;height:30px;border-radius:50%;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      font-size:10.5px;font-weight:700;background:rgba(255,69,58,.15);color:#FF453A;
+    }
+    .ab-art-lead .nm{font-size:13px;font-weight:600;color:var(--text)}
+    .ab-art-lead .sc{font-size:16px;font-weight:800;color:#FF453A;letter-spacing:-.03em;text-shadow:0 0 12px rgba(255,69,58,.35)}
+    .ab-art-lead .tag{
+      font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+      color:#FF7A70;background:rgba(255,69,58,.1);border:1px solid rgba(255,69,58,.22);
+      padding:3px 8px;border-radius:20px;
+    }
+
+    /* ── Grundaren ── */
+    .ab-founder{
       display:flex;gap:52px;align-items:flex-start;
-      background:linear-gradient(145deg,rgba(255,255,255,0.055) 0%,rgba(255,255,255,0.022) 100%);
-      border:1px solid rgba(255,255,255,0.09);
+      background:linear-gradient(145deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.02) 100%);
+      border:1px solid rgba(255,255,255,.09);
       border-radius:24px;padding:48px;
       position:relative;overflow:hidden;
-      box-shadow:0 24px 80px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.03);
+      box-shadow:0 24px 80px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.03);
     }
-    .founder-card::before{
+    .ab-founder::before{
       content:'';position:absolute;top:-60px;right:-60px;
       width:320px;height:320px;
-      background:radial-gradient(circle,rgba(10,132,255,0.09) 0%,transparent 65%);
+      background:radial-gradient(circle,rgba(10,132,255,.09) 0%,transparent 65%);
       pointer-events:none;
     }
-    .founder-img-col{flex-shrink:0;position:relative;z-index:1}
-    .founder-img-frame{
+    .ab-founder-img-col{flex-shrink:0;position:relative;z-index:1}
+    .ab-founder-frame{
       width:196px;height:248px;border-radius:18px;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.08),
-        0 28px 72px rgba(0,0,0,0.60),
-        0 0 48px rgba(10,132,255,0.10);
+      box-shadow:0 0 0 1px rgba(255,255,255,.08),0 28px 72px rgba(0,0,0,.6),0 0 48px rgba(10,132,255,.1);
     }
-    .founder-img{
+    .ab-founder-img{
       width:100%;height:100%;object-fit:cover;object-position:center top;display:block;
       border-radius:18px;
       filter:grayscale(100%);
-      transition:filter .4s ease, transform .4s ease, box-shadow .4s ease;
-      cursor:default;
+      transition:filter .4s ease,transform .4s ease,box-shadow .4s ease;
     }
-    .founder-img:hover{
-      filter:grayscale(0%);
-      transform:scale(1.03);
-      box-shadow:0 0 40px rgba(10,132,255,0.22);
+    .ab-founder-img:hover{
+      filter:grayscale(0%);transform:scale(1.03);
+      box-shadow:0 0 40px rgba(10,132,255,.22);
     }
-    .founder-text-col{flex:1;min-width:0;padding-top:6px;position:relative;z-index:1}
-    .founder-text-col .page-p{font-size:15.5px;margin-bottom:14px}
-    .founder-byline{
-      margin-top:28px;padding-top:22px;
-      border-top:1px solid rgba(255,255,255,0.07);
+    .ab-founder-text{flex:1;min-width:0;padding-top:4px;position:relative;z-index:1}
+    .ab-founder-text .ab-p{font-size:15.5px}
+    .ab-founder-quote{
+      margin:20px 0;padding:2px 0 2px 18px;
+      border-left:2px solid rgba(10,132,255,.55);
+      font-size:17px;line-height:1.55;font-weight:600;color:var(--text);
+      letter-spacing:-.015em;
     }
-    .founder-byline-name{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.015em}
-    .founder-byline-role{font-size:12.5px;color:var(--text-3);margin-top:5px;letter-spacing:.01em}
+    .ab-byline-mail{font-size:12.5px;color:var(--text-3);margin-top:10px}
+    .ab-byline-mail a{color:var(--blue-2);transition:color .15s}
+    .ab-byline-mail a:hover{color:#7ec8ff;text-decoration:underline}
+    .ab-byline{
+      margin-top:26px;padding-top:20px;
+      border-top:1px solid rgba(255,255,255,.07);
+    }
+    .ab-byline-name{font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.015em}
+    .ab-byline-role{font-size:12.5px;color:var(--text-3);margin-top:4px;letter-spacing:.01em}
 
+    /* ── Principer: numrerade rader, inte kort ── */
+    .ab-pr{margin-top:44px;border-top:1px solid var(--border)}
+    .ab-pr-row{
+      display:grid;grid-template-columns:80px 280px 1fr;
+      gap:28px;align-items:baseline;
+      padding:32px 4px;
+      border-bottom:1px solid var(--border);
+      transition:background .2s ease;
+    }
+    .ab-pr-row:hover{background:rgba(255,255,255,.015)}
+    .ab-pr-num{
+      font-size:13px;font-weight:800;letter-spacing:.12em;
+      color:var(--blue);opacity:.75;font-variant-numeric:tabular-nums;
+    }
+    .ab-pr-title{font-size:17px;font-weight:700;letter-spacing:-.02em;color:var(--text)}
+    .ab-pr-desc{font-size:14.5px;color:var(--text-2);line-height:1.6}
+
+    /* ── CTA ── */
+    .ab-cta{
+      margin-top:120px;padding:96px 0 120px;
+      text-align:center;position:relative;
+    }
+    .ab-cta::before{
+      content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);
+      width:min(700px,90vw);height:100%;
+      background:radial-gradient(ellipse at center,rgba(10,132,255,.07) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .ab-cta-beam{
+      width:1.5px;height:56px;margin:0 auto 44px;
+      background:linear-gradient(to bottom,transparent,rgba(10,132,255,.6));
+      box-shadow:0 0 8px rgba(10,132,255,.3);
+    }
+    .ab-cta .ab-h2{
+      font-size:clamp(30px,4.2vw,50px);
+      letter-spacing:-.035em;margin-bottom:16px;
+    }
+    .ab-cta-sub{font-size:17px;color:var(--text-2);max-width:460px;margin:0 auto 38px;line-height:1.65}
+    .ab-cta-actions{
+      display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
+      position:relative;
+    }
+    .ab-cta .hero-proof{margin-top:26px}
+
+    /* ── Mobil ── */
+    @media(max-width:880px){
+      .ab-hero-grid{grid-template-columns:1fr;gap:48px}
+      .ab-chat{justify-self:start}
+      .ab-built{grid-template-columns:1fr;gap:36px}
+      .ab-built-copy{position:static}
+      .ab-pr-row{grid-template-columns:48px 1fr;grid-template-rows:auto auto;gap:6px 18px}
+      .ab-pr-num{grid-row:1}
+      .ab-pr-title{grid-column:2}
+      .ab-pr-desc{grid-column:2}
+    }
     @media(max-width:600px){
-      .page-hero{padding:100px 0 56px}
-      .page-section{padding:0 20px}
-      .value-grid{grid-template-columns:1fr}
-      .founder-wrap{padding:0 20px}
-      .founder-card{flex-direction:column;gap:28px;padding:28px 22px}
-      .founder-img-frame{width:100%;height:280px;border-radius:14px}
-      .founder-img{height:280px;border-radius:14px;object-position:center 15%}
+      .ab-wrap{padding:0 20px}
+      .ab-sec{margin-top:72px}
+      .ab-hero{padding-top:108px}
+      .ab-hero h1{font-size:clamp(30px,8.6vw,38px);margin:16px 0 16px}
+      .ab-chat{max-width:100%;padding:16px 16px 14px}
+      .ab-flows{padding:20px 16px}
+      .ab-step{font-size:11.5px;padding:7px 11px;white-space:normal}
+      .ab-arr{width:10px}
+      .ab-journey{padding-left:30px}
+      .ab-journey::before{left:8px}
+      .ab-jn{padding-bottom:30px}
+      .ab-jn-dot{left:-27px;width:10px;height:10px}
+      .ab-jn-desc{font-size:13px}
+      .ab-art-bubble{max-width:100%}
+      .ab-art-seg span{padding:6px 9px;font-size:11px}
+      .ab-art-lead{gap:9px;padding:10px 12px;flex-wrap:wrap}
+      .ab-hero-proof{gap:8px 16px}
+      .ab-hero-proof span{font-size:12px}
+      .ab-founder{flex-direction:column;gap:28px;padding:26px 20px}
+      .ab-founder-frame{width:100%;height:280px;border-radius:14px}
+      .ab-founder-img{border-radius:14px;object-position:center 15%}
+      .ab-cta{margin-top:80px;padding:64px 0 88px}
+      .ab-cta-actions{flex-direction:column}
+      .ab-cta-actions .btn{width:100%;justify-content:center}
     }
   </style>
 </head>
@@ -101,6 +361,11 @@
       <a href="/" class="nav-logo" aria-label="NordAssist startsida">
         <img src="./assets/nordassist-logo-v5.svg" alt="NordAssist"/>
       </a>
+      <ul class="nav-links">
+        <li><a href="./om-oss.html" style="color:var(--text)">Om oss</a></li>
+        <li><a href="./kontakt.html">Kontakt</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+      </ul>
       <div class="nav-right">
         <a href="https://app.getnordassist.com/login" class="nav-login">Logga in</a>
         <a href="https://app.getnordassist.com/signup" class="nav-cta">
@@ -114,104 +379,248 @@
   </div>
 </nav>
 
-<section class="page-hero">
-  <div class="w-xs">
-    <div class="eyebrow fi fi-1">Om oss</div>
-    <h1 class="h1 fi fi-2">Vi tröttnade på att företag tappar kunder.<br>Så vi byggde en säljare som aldrig missar en.</h1>
-    <p class="lead fi fi-3">Nordassist är byggt för en enkel sak.<br>Att se till att ingen besökare lämnar utan svar.<br><br>En AI-säljare som arbetar dygnet runt.<br>Som svarar direkt.<br>Som fångar upp varje möjlighet.</p>
-  </div>
-</section>
+<!-- ════════ HERO ════════ -->
+<header class="ab-hero">
+  <div class="ab-wrap">
+    <div class="ab-hero-grid">
 
-<div class="page-body">
-  <div class="page-section reveal">
-    <h2 class="page-h2">Bakgrunden</h2>
-    <p class="page-p punch">De flesta företag förlorar inte kunder för att deras produkt är dålig.</p>
-    <p class="page-p punch">De förlorar dem för att ingen svarar i rätt ögonblick.</p>
-    <p class="page-p">Besökaren kommer in.<br>Hittar inget snabbt svar.<br>Försvinner.<br><br>Och kommer aldrig tillbaka.</p>
-    <p class="page-p punch" style="margin-top:28px">Det var där Nordassist föddes.</p>
-    <p class="page-p">Inte som en chatbot.<br><br>Utan som en AI-säljare.<br>Som välkomnar varje besökare.<br>Ställer rätt frågor.<br>Kvalificerar intresse.<br><br>Och ser till att du aldrig missar en affär.</p>
-  </div>
-
-  <div class="page-divider"></div>
-
-  <!-- ── Grundare ── -->
-  <div class="founder-wrap reveal">
-    <div class="founder-card">
-
-      <div class="founder-img-col">
-        <div class="founder-img-frame">
-          <img src="./assets/nils-von-bahr.png" alt="Nils von Bahr, grundare NordAssist" class="founder-img"/>
+      <div>
+        <div class="eyebrow fi fi-1">Om NordAssist</div>
+        <h1 class="fi fi-2">Byggt för ögonblicket innan kunden försvinner.</h1>
+        <p class="lead fi fi-3">
+          NordAssist svarar dina besökare direkt, fångar köpsignaler och ser till att rätt personer får uppföljning. Innan de hinner gå vidare till någon annan.
+        </p>
+        <div class="ab-hero-proof fi fi-4" aria-label="Produktbevis">
+          <span>Svar på sekunder</span>
+          <span>+30% fler bokade möten</span>
+          <span>Igång på 5 minuter</span>
         </div>
       </div>
 
-      <div class="founder-text-col">
-        <div class="eyebrow" style="margin-bottom:22px">Bakom NordAssist</div>
-        <p class="page-p punch">Jag såg samma sak om och om igen.</p>
-        <p class="page-p">Bra företag som tappade kunder varje dag.<br>Inte för att de var dåliga.<br>Utan för att ingen svarade i tid.</p>
-        <p class="page-p punch">Det var där idén föddes.</p>
-        <p class="page-p">Jag ville bygga något som faktiskt gör skillnad.</p>
-        <p class="page-p">Inte ännu en chatbot.<br><br>Utan en AI-säljare som jobbar dygnet runt.<br>Kvalificerar leads.<br>Och hjälper företag att växa på riktigt.</p>
-        <div class="founder-byline">
-          <div class="founder-byline-name">Nils von Bahr</div>
-          <div class="founder-byline-role">Founder, NordAssist</div>
+      <div class="ab-chat fi fi-4" aria-hidden="true">
+        <div class="ab-chat-top">
+          <span class="ab-chat-time">Lördag 21:47</span>
+          <span class="ab-chat-nova">Nova · Online</span>
+        </div>
+        <div class="ab-chat-msgs">
+          <div class="chat-bubble chat-bubble-user">Hej! Vi behöver hjälp med ett badrum i maj. Har ni möjlighet?</div>
+          <div class="chat-bubble chat-bubble-ai">Hej! Ja, vi har lediga veckor i maj. Vill du boka ett kort samtal så tittar vi på detaljerna?</div>
+          <div class="chat-bubble chat-bubble-user">Ja gärna, tisdag funkar bra</div>
+        </div>
+        <div class="ab-chat-done">
+          <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.2 4.8 9 10 3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Möte bokat. Lead sparad i dashboarden.
         </div>
       </div>
 
     </div>
   </div>
+</header>
 
-  <div class="page-divider"></div>
+<main>
 
-  <div class="page-section reveal">
-    <h2 class="page-h2">Vad vi tror på</h2>
-    <div class="value-grid">
-      <div class="value-card">
-        <div class="value-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        <div class="value-card-title">Trovärdighet</div>
-        <div class="value-card-desc">AI ska kännas mänsklig.<br>Inte som en robot.</div>
+  <!-- ════════ PROBLEMET ════════ -->
+  <section class="ab-sec reveal" aria-labelledby="ab-problem">
+    <div class="ab-wrap">
+      <div class="ab-narrow">
+        <div class="eyebrow" style="margin-bottom:18px">Problemet vi såg</div>
+        <h2 id="ab-problem" class="ab-h2">Kunder försvinner sällan för att erbjudandet är dåligt</h2>
+        <p class="ab-p">
+          De försvinner för att svaret kommer för sent. Den som besöker en hemsida är ofta mitt i ett beslut: de jämför alternativ, ställer en fråga och går vidare. Företaget som svarar först vinner oftast affären, även när någon annan hade gjort jobbet bättre.
+        </p>
       </div>
-      <div class="value-card">
-        <div class="value-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-            <polyline points="16 7 22 7 22 13"/>
-          </svg>
+
+      <div class="ab-flows" aria-hidden="true">
+        <div>
+          <div class="ab-flow-label">Utan snabbt svar</div>
+          <div class="ab-flow">
+            <span class="ab-step">Besökaren hittar er</span><span class="ab-arr"></span>
+            <span class="ab-step">Ställer en fråga</span><span class="ab-arr"></span>
+            <span class="ab-step">Väntar på svar</span><span class="ab-arr"></span>
+            <span class="ab-step">Lämnar sidan</span><span class="ab-arr"></span>
+            <span class="ab-step bad">Köper av någon annan</span>
+          </div>
         </div>
-        <div class="value-card-title">Resultat</div>
-        <div class="value-card-desc">Vi bryr oss inte om klick.<br>Vi bryr oss om affärer.</div>
+        <div class="ab-flow-div"></div>
+        <div>
+          <div class="ab-flow-label med">Med NordAssist</div>
+          <div class="ab-flow">
+            <span class="ab-step">Ställer en fråga</span><span class="ab-arr"></span>
+            <span class="ab-step nova">Nova svarar direkt</span><span class="ab-arr"></span>
+            <span class="ab-step">Lead sparad</span><span class="ab-arr"></span>
+            <span class="ab-step good">Möte bokat</span>
+          </div>
+        </div>
       </div>
-      <div class="value-card">
-        <div class="value-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-            <line x1="9" y1="9" x2="9.01" y2="9"/>
-            <line x1="15" y1="9" x2="15.01" y2="9"/>
-          </svg>
-        </div>
-        <div class="value-card-title">Enkelhet</div>
-        <div class="value-card-desc">Ska ta minuter att komma igång.<br>Inte veckor.</div>
+
+      <div class="ab-narrow" style="margin-top:32px">
+        <p class="ab-p">
+          Det är hela idén med NordAssist. Inte fler besökare, utan fler affärer av de besökare du redan har.
+        </p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="page-divider"></div>
+  <!-- ════════ VAD VI BYGGDE ════════ -->
+  <section class="ab-sec reveal" aria-labelledby="ab-built-title">
+    <div class="ab-wrap">
+      <div class="ab-built">
 
-  <div class="page-section reveal" style="text-align:center">
-    <h2 class="page-h2">Redo att sälja mer?</h2>
-    <p class="page-p" style="text-align:center;margin-bottom:32px">Testa Nordassist i 14 dagar och se vad som händer när ingen besökare lämnar utan svar.</p>
-    <a href="https://app.getnordassist.com/signup" class="btn btn-primary">
-      Starta din AI-säljare
-      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-  </div>
-</div>
+        <div class="ab-built-copy">
+          <div class="eyebrow" style="margin-bottom:18px">Vad vi byggde</div>
+          <h2 id="ab-built-title" class="ab-h2">Nova är en säljare, inte en svarsmaskin</h2>
+          <p class="ab-p">
+            Kärnan i NordAssist är Nova, en AI som gör mer än att svara på frågor. Den förstår när ett samtal är på väg att bli en affär och ser till att det inte stannar vid småprat.
+          </p>
+          <p class="ab-p">
+            Så här ser resan ut, från första frågan till affär som väntar i din dashboard.
+          </p>
+        </div>
+
+        <div class="ab-journey" aria-label="Så blir en besökare en affär">
+          <div class="ab-jn">
+            <div class="ab-jn-dot" aria-hidden="true"></div>
+            <div class="ab-jn-title">Svarar direkt</div>
+            <div class="ab-jn-desc">Frågor får svar på sekunder. Dygnet runt, även när ni har stängt.</div>
+            <div class="ab-jn-art"><span class="ab-art-bubble">Hej! Ja, det tar ungefär tre veckor från start till klart.</span></div>
+          </div>
+          <div class="ab-jn">
+            <div class="ab-jn-dot" aria-hidden="true"></div>
+            <div class="ab-jn-title">Läser köpintresse</div>
+            <div class="ab-jn-desc">Nova känner igen köpsignaler i samtalet och scorar varje lead från 0 till 100.</div>
+            <div class="ab-jn-art">
+              <span class="ab-art-score"><span>Köpintresse</span><span class="ab-art-bar"><span style="width:82%"></span></span><b>82</b></span>
+            </div>
+          </div>
+          <div class="ab-jn">
+            <div class="ab-jn-dot" aria-hidden="true"></div>
+            <div class="ab-jn-title">Samlar kontaktuppgifter</div>
+            <div class="ab-jn-desc">Namn, telefon och mejl fångas naturligt i samtalet. Inga formulär.</div>
+            <div class="ab-jn-art"><span class="ab-art-chip">Anna Lindqvist · 070 123 45 67</span></div>
+          </div>
+          <div class="ab-jn">
+            <div class="ab-jn-dot" aria-hidden="true"></div>
+            <div class="ab-jn-title">Kvalificerar</div>
+            <div class="ab-jn-desc">Du ser vilka som är redo att köpa och vilka som bara tittar runt.</div>
+            <div class="ab-jn-art">
+              <span class="ab-art-seg"><span class="on">Redo att köpa</span><span>Varm</span><span>Tittar runt</span></span>
+            </div>
+          </div>
+          <div class="ab-jn">
+            <div class="ab-jn-dot" aria-hidden="true"></div>
+            <div class="ab-jn-title">Bokar mötet</div>
+            <div class="ab-jn-desc">Besökaren väljer en tid direkt i chatten. Mötet hamnar i din kalender.</div>
+            <div class="ab-jn-art">
+              <span class="ab-art-chip"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.2 4.8 9 10 3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Tisdag 14 maj · 14:00</span>
+            </div>
+          </div>
+          <div class="ab-jn">
+            <div class="ab-jn-dot" aria-hidden="true"></div>
+            <div class="ab-jn-title">Väntar i din dashboard</div>
+            <div class="ab-jn-desc">När du öppnar dashboarden ligger Anna överst. Redo att ringa.</div>
+            <div class="ab-jn-art">
+              <span class="ab-art-lead"><span class="ini">AL</span><span class="nm">Anna Lindqvist</span><span class="sc">94</span><span class="tag">Ring nu</span></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ GRUNDAREN ════════ -->
+  <section class="ab-sec reveal" aria-labelledby="ab-founder-title">
+    <div class="ab-wrap">
+      <div class="ab-founder">
+
+        <div class="ab-founder-img-col">
+          <div class="ab-founder-frame">
+            <img src="./assets/nils-von-bahr.png" alt="Nils von Bahr, grundare av NordAssist" class="ab-founder-img"/>
+          </div>
+        </div>
+
+        <div class="ab-founder-text">
+          <div class="eyebrow" style="margin-bottom:20px" id="ab-founder-title">Grundaren</div>
+          <p class="ab-p">
+            Jag såg samma mönster hos företag efter företag. De lade pengar på att synas och få besökare till hemsidan, men tappade dem när ingen fanns där i rätt ögonblick.
+          </p>
+          <div class="ab-founder-quote">
+            Frågorna kom på kvällar och helger. Svaren kom dagen efter. Då hade kunden redan hittat någon annan.
+          </div>
+          <p class="ab-p">
+            NordAssist byggdes för att täppa till det glappet. Nova tar samtalet när intresset är som störst, samlar det som behövs och lämnar över till dig när det är dags att stänga affären. Målet har varit detsamma från första dagen: inga fler affärer ska gå förlorade för att ingen svarade.
+          </p>
+          <div class="ab-byline">
+            <div class="ab-byline-name">Nils von Bahr</div>
+            <div class="ab-byline-role">Grundare, NordAssist</div>
+            <div class="ab-byline-mail">Undrar du något? <a href="mailto:kontakt@getnordassist.com">Mejla mig direkt</a></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PRINCIPER ════════ -->
+  <section class="ab-sec reveal" aria-labelledby="ab-pr-title">
+    <div class="ab-wrap">
+      <div class="ab-narrow" style="max-width:760px">
+        <div class="eyebrow" style="margin-bottom:18px">Så bygger vi</div>
+        <h2 id="ab-pr-title" class="ab-h2">Fyra principer som styr produkten</h2>
+      </div>
+      <div class="ab-pr" style="max-width:860px">
+        <div class="ab-pr-row">
+          <span class="ab-pr-num">01</span>
+          <span class="ab-pr-title">Svar ska kännas mänskliga</span>
+          <span class="ab-pr-desc">Nova låter som en kollega, inte som ett formulär.</span>
+        </div>
+        <div class="ab-pr-row">
+          <span class="ab-pr-num">02</span>
+          <span class="ab-pr-title">Resultat före chattvolym</span>
+          <span class="ab-pr-desc">Vi mäter bokade möten och affärer, inte antal konversationer.</span>
+        </div>
+        <div class="ab-pr-row">
+          <span class="ab-pr-num">03</span>
+          <span class="ab-pr-title">Enkelt från första minuten</span>
+          <span class="ab-pr-desc">En rad kod. Igång på fem minuter.</span>
+        </div>
+        <div class="ab-pr-row">
+          <span class="ab-pr-num">04</span>
+          <span class="ab-pr-title">Trygg datahantering</span>
+          <span class="ab-pr-desc">All data inom EU. Kunduppgifterna är alltid dina.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CTA ════════ -->
+  <section class="ab-cta reveal" aria-labelledby="ab-cta-title">
+    <div class="ab-wrap">
+      <div class="ab-cta-beam" aria-hidden="true"></div>
+      <h2 id="ab-cta-title" class="ab-h2">Nästa besökare kan vara din största affär</h2>
+      <p class="ab-cta-sub">Låt Nova ta samtalet. Efter fjorton dagar vet du exakt vad din hemsida klarar på egen hand.</p>
+      <div class="ab-cta-actions">
+        <a href="https://app.getnordassist.com/signup" class="btn btn-primary">
+          Starta gratis
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://app.getnordassist.com/nordassist-demo" class="btn btn-ghost hero-btn-live" target="_blank" rel="noopener">
+          <span class="hero-btn-live-dot" aria-hidden="true"></span>
+          Testa Nova live
+        </a>
+      </div>
+      <div class="hero-proof" aria-label="Trygghet">
+        <span class="hero-proof-item"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.2 4.8 9 10 3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>14 dagar gratis</span>
+        <span class="hero-proof-item"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.2 4.8 9 10 3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Inget kort krävs</span>
+        <span class="hero-proof-item"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.2 4.8 9 10 3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Data inom EU</span>
+        <span class="hero-proof-item"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.2 4.8 9 10 3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Avsluta när som helst</span>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <footer id="footer">
   <div class="w">
@@ -236,7 +645,7 @@
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(function(el) {
     observer.observe(el);
   });
