@@ -2565,4 +2565,46 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .sticky-cta { display:block }
   /* Add bottom padding so content isn't hidden behind sticky bar */
   #footer { padding-bottom:82px }
+
+  /* ────────────────
+     MOBILE STORY PACING (endast mobil)
+     Ger 97%-storyn ett filmiskt steg-för-steg-flöde: ett huvudbudskap
+     i taget istället för ett hopträngt textblock. Varje beat får en
+     egen "scen" (min-height) och centreras vertikalt, så föregående
+     budskap hinner lämna skärmen innan nästa visas.
+
+     Ingen ny animation införs — den befintliga .r-reveal-triggern
+     spelar redan upp varje beat när det når skärmen. Eftersom varje
+     .hook-pain-line har en egen .r avslöjas problemraderna nu stegvis
+     (en per scen) istället för samtidigt. Layout-only ⇒
+     prefers-reduced-motion påverkas inte. Desktop är helt orört
+     (allt ligger inom max-width:600px).
+  ──────────────── */
+
+  /* Beat 1 — "Du vet inte vilka de var. / Men NordAssist gör det." */
+  .vp-hook-text{
+    min-height:58vh;
+    margin-top:22px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+  }
+
+  /* #hook rymmer beat 2–4 — luft upptill/nedtill isolerar dem */
+  #hook{ padding:4vh 0 12vh }
+
+  /* Beat 2 — 97 % + label vilar ensamt, sedan öppen yta ner till nästa */
+  .hook-divider{ height:46px; margin:15vh auto 13vh }
+
+  /* Beat 3 — problemraderna: varje rad äger en egen scen och centreras,
+     så de avslöjas en i taget när man scrollar */
+  .hook-pain-seq{ gap:0 }
+  .hook-pain-line{
+    min-height:31vh;margin:0;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+  }
+
+  /* Beat 4 — payoff får egen luft; strålen leder ner till den */
+  .hook-turn{ height:40px; margin:7vh auto 14vh }
+
+  /* Övergång till dashboard — payoff hinner lämna innan introt syns */
+  #dashboard{ padding-top:7vh }
 }
