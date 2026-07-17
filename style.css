@@ -1728,6 +1728,51 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   background:linear-gradient(to bottom,transparent,rgba(255,255,255,.10),transparent);
 }
 
+/* ─────────────────────────────────────────
+   STORY REFINEMENT — 97% + sekvens + dashboard-övergång
+───────────────────────────────────────── */
+/* Atmosfär bakom 97:an — siffran blir en ljuskälla, sektionen mindre tom */
+#hook::before{
+  content:'';position:absolute;left:50%;top:6%;
+  transform:translateX(-50%);
+  width:min(760px,92vw);height:460px;border-radius:50%;
+  background:radial-gradient(circle,rgba(10,132,255,.10) 0%,rgba(10,132,255,.035) 45%,transparent 70%);
+  filter:blur(30px);
+  pointer-events:none;z-index:0;
+}
+.hook-inner{position:relative;z-index:1}
+
+/* Textsekvensen — tre rader som landar en i taget (befintligt .r-system) */
+.hook-pain-seq{display:flex;flex-direction:column;gap:14px}
+.hook-pain-line{
+  font-size:clamp(16px,1.8vw,20px);
+  line-height:1.5;
+  color:rgba(255,255,255,.55);
+  letter-spacing:-.01em;
+}
+/* Sista raden landar hårdast — ljusare + tyngre */
+.hook-pain-final{
+  color:rgba(255,255,255,.85);
+  font-weight:600;
+}
+/* Vändpunkten — en kort stråle som leder ögat till payoff-raden */
+.hook-turn{
+  width:1.5px;height:34px;margin:30px auto 26px;
+  background:linear-gradient(to bottom,transparent,rgba(10,132,255,.65));
+  box-shadow:0 0 8px rgba(10,132,255,.3);
+}
+.hook-cta-line{margin-top:0}
+
+/* Dashboard-bevisraden — glas-pill som håller ihop siffrorna */
+.dash-proof-nums{
+  display:inline-flex;
+  padding:16px 18px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;
+  background:rgba(255,255,255,.025);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 34px rgba(0,0,0,.35);
+}
+
 /* ── Lightbox — glass + smooth spring ── */
 .lb-overlay{
   backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px);
@@ -2078,6 +2123,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .hook-divider{ height:40px; margin:28px auto }
   .hook-pain   { font-size:clamp(14px,3.8vw,17px)!important; line-height:2.0!important }
   .hook-cta-line{ font-size:clamp(16px,4.5vw,20px)!important }
+  #hook::before{ height:280px; filter:blur(22px); opacity:.8 }
+  .hook-pain-seq { gap:10px }
+  .hook-pain-line{ font-size:clamp(14px,3.9vw,17px) }
+  .hook-turn { height:24px; margin:22px auto 18px }
   .lead        { font-size:15.5px }
 
   /* ────────────────
@@ -2086,7 +2135,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   #dashboard { padding-bottom:var(--sec-m) }
   .dash-label-row { margin-bottom:28px }
   .dash-label-top { gap:8px; margin-bottom:14px; flex-wrap:wrap }
-  .dash-proof-nums { margin-top:22px; gap:0 }
+  .dash-proof-nums { margin-top:22px; gap:0; padding:12px 8px; border-radius:16px }
   .dash-proof-num  { padding:0 14px }
   .dash-proof-n    { font-size:clamp(18px,5vw,24px) }
   .dash-proof-l    { font-size:10px }
